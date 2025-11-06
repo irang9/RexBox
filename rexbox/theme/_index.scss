@@ -86,15 +86,9 @@ $negative: $blue-600; // 하락/부정 (기본값: #3c4e9b)
 $neutral: $gray-500; // 중립 (기본값: #6C7285)
 
 // Stock aliases
-$stock-up: $positive;
-$stock-down: $negative;
 $stock-neutral: $neutral;
 $stock-positive: $positive;
 $stock-negative: $negative;
-$value-red: $positive;
-$value-blue: $negative;
-$gapup: $positive;
-$gapdown: $negative;
 
 // ============================================
 // Link Colors

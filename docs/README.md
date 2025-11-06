@@ -78,9 +78,22 @@ python3 scripts/generate-docs.py
 
 1. **watchdog 패키지 설치** (한 번만):
 
-```bash
-pip3 install watchdog
-```
+   **macOS (externally-managed-environment 오류 시):**
+   ```bash
+   python3 -m pip install --user --break-system-packages watchdog
+   ```
+   
+   **또는 가상환경 사용 (권장):**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install watchdog
+   ```
+
+   **일반적인 경우:**
+   ```bash
+   pip3 install watchdog
+   ```
 
 2. **서비스 설치** (한 번만):
 
@@ -111,9 +124,22 @@ launchctl unload ~/Library/LaunchAgents/com.rexbox.docs-watcher.plist
 
 1. **watchdog 패키지 설치** (한 번만):
 
-```bash
-pip3 install watchdog
-```
+   **macOS (externally-managed-environment 오류 시):**
+   ```bash
+   python3 -m pip install --user --break-system-packages watchdog
+   ```
+   
+   **또는 가상환경 사용 (권장):**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   pip install watchdog
+   ```
+
+   **일반적인 경우:**
+   ```bash
+   pip3 install watchdog
+   ```
 
 2. **감시 시작**:
 

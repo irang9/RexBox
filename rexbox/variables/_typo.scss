@@ -11,26 +11,26 @@
     @return math.div($px, 16) * 1rem;
 }
 
-$font-size-3xs:rem(10);
-$font-size-2xs:rem(11);
-$font-size-xs:rem(12);
-$font-size-sm:rem(14);
-$font-size-base:rem(16);
-$font-size-lg:rem(18);
-$font-size-xl:rem(20);
-$font-size-2xl:rem(24);
-$font-size-3xl:rem(30);
-$font-size-4xl:rem(36);
-$font-size-5xl:rem(48);
-$font-size-6xl:rem(60);
-$font-size-7xl:rem(72);
-$font-size-8xl:rem(96);
-$font-size-9xl:rem(128);
+$font-size-3xs: rem(10);
+$font-size-2xs: rem(11);
+$font-size-xs: rem(12);
+$font-size-sm: rem(14);
+$font-size-base: rem(16);
+$font-size-md: rem(16);
+$font-size-lg: rem(18);
+$font-size-xl: rem(20);
+$font-size-2xl: rem(24);
+$font-size-3xl: rem(30);
+$font-size-4xl: rem(36);
+$font-size-5xl: rem(48);
+$font-size-6xl: rem(60);
+$font-size-7xl: rem(72);
+$font-size-8xl: rem(96);
+$font-size-9xl: rem(128);
 
-$font-weight-light:300;
-$font-weight-normal:400;
-$font-weight-medium:500;
-$font-weight-semibold:600;
-$font-weight-bold:700;
-$font-weight-black:900;
-
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-black: 900;

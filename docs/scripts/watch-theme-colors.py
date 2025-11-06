@@ -17,7 +17,9 @@ try:
 except ImportError:
     WATCHDOG_AVAILABLE = False
     print("⚠️  watchdog 패키지가 설치되지 않았습니다.")
-    print("   설치: pip3 install watchdog")
+    print("   설치 (macOS): python3 -m pip install --user --break-system-packages watchdog")
+    print("   설치 (가상환경): python3 -m venv venv && source venv/bin/activate && pip install watchdog")
+    print("   설치 (일반): pip3 install watchdog")
     print("   또는 Git pre-commit hook을 사용하세요.")
     sys.exit(1)
 
@@ -35,12 +37,16 @@ class DocsHandler(FileSystemEventHandler):
         if event.is_directory:
             return
         
+        # event.src_path를 Path 객체로 변환
+        file_path = Path(event.src_path)
+        
         # 관련 SCSS 파일만 처리
-        if not event.src_path.endswith(('.scss')):
+        if not str(file_path).endswith(('.scss')):
             return
         
         # docs 디렉토리 내 파일은 무시 (생성된 HTML 파일)
-        if 'docs' in event.src_path:
+        # 절대 경로나 상대 경로 모두 처리
+        if 'docs' in str(file_path) and 'scripts' not in str(file_path):
             return
         
         # Debounce: 너무 빠른 연속 수정 방지
@@ -51,10 +57,12 @@ class DocsHandler(FileSystemEventHandler):
         
         # 상대 경로 계산 (프로젝트 루트 기준)
         try:
+            # 프로젝트 루트는 rexbox/rexbox의 부모 디렉토리
             project_root = self.script_path.parent.parent.parent
-            rel_path = Path(event.src_path).relative_to(project_root)
-        except ValueError:
-            rel_path = Path(event.src_path)
+            rel_path = file_path.relative_to(project_root)
+        except (ValueError, AttributeError):
+            # 상대 경로 변환 실패 시 절대 경로 사용
+            rel_path = file_path
         print(f"\n📝 변경 감지: {rel_path}")
         print("   문서 페이지 생성 중...")
         

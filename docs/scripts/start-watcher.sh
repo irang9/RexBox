@@ -14,16 +14,22 @@ python3 -c "import watchdog" 2>/dev/null
 if [ $? -ne 0 ]; then
     echo "⚠️  watchdog 패키지가 필요합니다."
     echo ""
-    echo "설치 방법:"
-    echo "  pip3 install watchdog"
+    echo "설치 방법 (macOS):"
+    echo "  python3 -m pip install --user --break-system-packages watchdog"
     echo ""
-    echo "또는:"
-    echo "  python3 -m pip install watchdog"
+    echo "또는 가상환경 사용:"
+    echo "  python3 -m venv venv"
+    echo "  source venv/bin/activate"
+    echo "  pip install watchdog"
+    echo ""
+    echo "또는 (일반):"
+    echo "  pip3 install watchdog"
     echo ""
     read -p "지금 설치하시겠습니까? (y/n) " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        pip3 install watchdog
+        # macOS에서 externally-managed-environment 오류 방지
+        python3 -m pip install --user --break-system-packages watchdog 2>/dev/null || pip3 install --user --break-system-packages watchdog
     else
         echo "설치를 건너뜁니다. Git pre-commit hook을 사용하세요."
         exit 1
