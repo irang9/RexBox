@@ -66,6 +66,23 @@ def extract_theme_mappings(theme_file: Path, color_vars: Dict[str, str]) -> Dict
     return mappings
 
 
+def sort_color_by_brightness(color_list: List[Tuple[str, str]]) -> List[Tuple[str, str]]:
+    """색상을 밝은 순서대로 정렬합니다. 숫자가 없는 것 먼저, 그 다음 50, 100, 200... 순서"""
+    def get_sort_key(item):
+        var_name = item[0]
+        # 숫자 추출
+        match = re.search(r'-(\d+)$', var_name)
+        if match:
+            num = int(match.group(1))
+            # 50이 있으면 50이 100보다 앞에 오도록 (50이 더 밝음)
+            # 숫자가 작을수록 밝음 (50 < 100 < 200...)
+            return (1, num)  # 숫자가 있으면 (1, 숫자)
+        else:
+            return (0, 0)  # 숫자가 없으면 (0, 0) - 가장 앞에
+    
+    return sorted(color_list, key=get_sort_key)
+
+
 def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[str, str]]) -> str:
     """HTML 파일 내용을 생성합니다."""
     
@@ -140,7 +157,8 @@ def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[st
             text_colors.append(item)
         elif semantic_name.startswith('border-'):
             border_colors.append(item)
-        elif semantic_name in ['primary', 'primary-light', 'primary-dark', 'secondary', 'point'] or semantic_name.startswith('primary-'):
+        elif semantic_name in ['primary', 'secondary', 'point']:
+            # 숫자가 붙은 primary-*는 제외 (primary-100, primary-200 등)
             brand_colors.append(item)
         elif semantic_name in ['success', 'warning', 'error', 'info', 'valid', 'invalid']:
             state_colors.append(item)
@@ -199,7 +217,7 @@ def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[st
         }}
         .color-grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
             gap: 12px;
             margin-bottom: 24px;
         }}
@@ -310,7 +328,7 @@ def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[st
 <body>
     <div class="container">
         <h1>Shared SCSS Theme Colors</h1>
-        <p class="subtitle">shared-scss의 theme과 variables 색상 팔레트 (자동 생성)</p>
+        <p class="subtitle">shared-scss의 theme과 variables 색상 팔레트</p>
 """
 
     # Semantic Colors 섹션
@@ -328,7 +346,7 @@ def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[st
                 <div class="category-title">Background Colors</div>
                 <div class="semantic-colors">
 """
-        for name, color, base_var in sorted(bg_colors):
+        for name, color, base_var in sort_color_by_brightness(bg_colors):
             text_color = "#1e293b" if not name.startswith('bg-dark') else "#ffffff"
             border_style = 'border: 1px solid #e2e8f0;' if color.upper() in ['#FCFCFC', '#FFFFFF'] else ''
             html += f"""
@@ -353,7 +371,7 @@ def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[st
                 <div class="category-title">Text Colors</div>
                 <div class="semantic-colors">
 """
-        for name, color, base_var in sorted(text_colors):
+        for name, color, base_var in sort_color_by_brightness(text_colors):
             bg_color = "#111827" if name == 'text-inverse' else "#ffffff"
             border_style = 'border: 1px solid #e2e8f0;' if bg_color == '#ffffff' else ''
             html += f"""
@@ -378,7 +396,7 @@ def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[st
                 <div class="category-title">Border Colors</div>
                 <div class="semantic-colors">
 """
-        for name, color, base_var in sorted(border_colors):
+        for name, color, base_var in sort_color_by_brightness(border_colors):
             html += f"""
                     <div class="semantic-item border-example" style="background: #ffffff; border: 2px solid {color};">
                         <div class="semantic-info">
@@ -401,7 +419,9 @@ def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[st
                 <div class="category-title">Brand Colors</div>
                 <div class="semantic-colors">
 """
-        for name, color, base_var in sorted(brand_colors):
+        # brand_colors는 primary가 가장 앞에 오도록 정렬
+        brand_colors_sorted = sorted(brand_colors, key=lambda x: (0 if x[0] == 'primary' else 1, x[0]))
+        for name, color, base_var in brand_colors_sorted:
             html += f"""
                     <div class="semantic-item">
                         <div class="semantic-swatch" style="background: {color};"></div>
@@ -424,7 +444,7 @@ def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[st
                 <div class="category-title">State Colors</div>
                 <div class="semantic-colors">
 """
-        for name, color, base_var in sorted(state_colors):
+        for name, color, base_var in sort_color_by_brightness(state_colors):
             html += f"""
                     <div class="semantic-item">
                         <div class="semantic-swatch" style="background: {color};"></div>
@@ -447,7 +467,7 @@ def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[st
                 <div class="category-title">Stock/Finance State Colors</div>
                 <div class="semantic-colors">
 """
-        for name, color, base_var in sorted(stock_colors):
+        for name, color, base_var in sort_color_by_brightness(stock_colors):
             html += f"""
                     <div class="semantic-item">
                         <div class="semantic-swatch" style="background: {color};"></div>
@@ -470,7 +490,7 @@ def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[st
                 <div class="category-title">Link Colors</div>
                 <div class="semantic-colors">
 """
-        for name, color, base_var in sorted(link_colors):
+        for name, color, base_var in sort_color_by_brightness(link_colors):
             html += f"""
                     <div class="semantic-item text-example" style="background: #ffffff; border: 1px solid #e2e8f0;">
                         <div class="semantic-info">
@@ -497,6 +517,12 @@ def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[st
     if 'primary' in primary_mappings:
         _, color = primary_mappings['primary']
         primary_colors.append(('primary', color))
+    
+    # primary-50, primary-100, primary-200... 순서대로 추가 (50이 있으면 50이 가장 앞)
+    # 먼저 50이 있는지 확인
+    if 'primary-50' in primary_mappings:
+        _, color = primary_mappings['primary-50']
+        primary_colors.append(('primary-50', color))
     
     # primary-100부터 primary-900까지 순서대로 추가
     for num in range(100, 1000, 100):
@@ -544,7 +570,9 @@ def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[st
                 <div class="palette-title">{category}</div>
                 <div class="color-grid">
 """
-        for var_name, color_value in sorted(color_list):
+        # 밝은 색상 순서대로 정렬
+        sorted_color_list = sort_color_by_brightness(color_list)
+        for var_name, color_value in sorted_color_list:
             border_style = 'border: 1px solid #e2e8f0;' if color_value.upper() in ['#FCFCFC', '#FFFFFF'] else ''
             html += f"""
                     <div class="color-item">
