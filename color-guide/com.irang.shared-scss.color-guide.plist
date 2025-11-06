@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.irang.shared-scss.color-guide</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/irang/Github/shared-scss/color-guide/watch-theme-colors.py</string>
+    </array>
+    <key>WorkingDirectory</key>
+    <string>/Users/irang/Github/shared-scss</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/tmp/shared-scss-color-guide.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/shared-scss-color-guide-error.log</string>
+</dict>
+</plist>
+
