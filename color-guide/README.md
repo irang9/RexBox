@@ -6,6 +6,21 @@
 
 shared-scss의 theme과 variables 색상 팔레트를 브라우저에서 확인할 수 있는 HTML 파일입니다.
 
+### GitHub에서 보기
+
+**Private 리포지토리인 경우:**
+- GitHub Pages는 Public 리포지토리 또는 GitHub Enterprise(유료) 필요
+- 로컬에서 확인하는 것이 가장 간단: `open color-guide/index.html`
+
+**Public 리포지토리인 경우:**
+- GitHub Pages 사용 가능 (무료):
+  1. GitHub 리포지토리 → **Settings** → **Pages**
+  2. **Source**에서 `main` 브랜치 선택
+  3. **Save** 클릭
+  4. 몇 분 후 접근: `https://irang9.github.io/shared-scss/color-guide/`
+
+자세한 내용은 `GITHUB_VIEW.md` 참고
+
 ### 생성 방법
 
 이 파일은 `generate-theme-colors.py` 스크립트를 실행하여 자동 생성됩니다:
@@ -114,6 +129,7 @@ python3 color-guide/generate-theme-colors.py
 ```
 color-guide/
 ├── README.md                    # 이 파일
+├── GITHUB_VIEW.md               # GitHub에서 보는 방법 가이드
 ├── generate-theme-colors.py     # HTML 생성 스크립트
 ├── watch-theme-colors.py        # 파일 감시 스크립트
 ├── start-watcher.sh             # 감시 시작 스크립트 (수동 실행용)
