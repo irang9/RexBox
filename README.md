@@ -19,7 +19,7 @@ shared-scss/
 │   ├── breakpoints/  # Breakpoint 변수와 mixins
 │   ├── theme/        # 의미 색상 (semantic colors)
 │   ├── mixins/       # Mixins
-│   ├── fonts/        # 폰트 파일들
+│   ├── fonts/        # 기본 폰트 파일 (Spoqa, Material Icons)
 │   ├── base/         # 기본 스타일 (reset)
 │   ├── utilities/    # 유틸리티 클래스
 │   ├── _index.scss   # 메인 진입점
@@ -57,7 +57,7 @@ shared-scss/
 - **breakpoints/**: 반응형 디자인을 위한 breakpoint 변수와 mixins
 - **theme/**: 의미 색상 (primary, secondary, success 등)
 - **mixins/**: 재사용 가능한 SCSS mixins
-- **fonts/**: 폰트 파일 및 폰트 변수
+- **fonts/**: 기본 폰트 파일 (Spoqa, Material Icons) - 선택적 폰트는 프로젝트별로 관리
 - **base/**: 기본 스타일 (reset 등)
 - **utilities/**: 유틸리티 클래스 (Bootstrap 스타일)
 
@@ -162,6 +162,26 @@ cp -r shared-scss/shared-scss /path/to/your/project/
 ### 4. 프로젝트별 커스터마이징
 
 프로젝트별 설정 파일(`_config.scss`)을 만들어 색상 등을 오버라이드할 수 있습니다. 자세한 방법은 [`sample-project/README.md`](./sample-project/README.md)를 참고하세요.
+
+#### 폰트 커스터마이징
+
+프로젝트별 선택적 폰트는 프로젝트의 `fonts/` 디렉토리에서 관리합니다:
+
+```scss
+// 프로젝트의 fonts/_gmarket.scss
+@font-face {
+    font-family: 'GmarketSans';
+    src: url('...') format('woff');
+}
+
+// _config.scss
+$font-gmarket: "GmarketSans", "Spoqa Han Sans Neo", ...;
+
+// main.scss
+@use 'fonts/gmarket' as *;
+```
+
+**참고:** shared-scss는 기본 폰트(`$font-basic`, `$font-monospace`)와 Material Icons만 제공합니다. 선택적 폰트는 프로젝트별로 다를 수 있으므로 각 프로젝트에서 관리합니다.
 
 ## 📖 더 알아보기
 

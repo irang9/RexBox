@@ -17,7 +17,7 @@ shared-scss/
 │   ├── breakpoints/  # Breakpoint 변수와 mixins
 │   ├── theme/        # 의미 색상 (semantic colors)
 │   ├── mixins/       # Mixins
-│   ├── fonts/        # 폰트 파일들
+│   ├── fonts/        # 기본 폰트 파일 (Spoqa, Material Icons)
 │   ├── base/         # 기본 스타일 (reset)
 │   ├── utilities/    # 유틸리티 클래스
 │   └── _index.scss   # 메인 진입점
@@ -102,6 +102,11 @@ $secondary: #4ecdc4;
 - `transform`: Transform 효과
 - `ellipsis`: 텍스트 말줄임
 - 기타 유용한 mixins
+
+### Fonts (폰트)
+- **기본 폰트**: `$font-basic`, `$font-monospace` (Spoqa Han Sans Neo 기반)
+- **Material Icons**: Google Material Icons 자동 포함
+- **선택적 폰트**: 프로젝트별 `fonts/` 디렉토리에서 관리 (Gmarket, Google Fonts 등)
 
 ### Utilities (유틸리티 클래스)
 - **Borders**: Border 추가/제거, width, color, radius, opacity

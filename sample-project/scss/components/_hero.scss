@@ -11,6 +11,8 @@
 @use '../../../shared-scss/variables' as *;
 @use '../../../shared-scss/breakpoints' as *;
 @use '../../../shared-scss/mixins' as *;
+@use '../../../shared-scss/fonts' as *;  // 필수 폰트 (spoqa, icons)
+@use '../fonts/gmarket' as *;  // Gmarket 폰트 (프로젝트별 선택적 폰트)
 
 .hero {
     background: linear-gradient(135deg, $primary 0%, $secondary 100%); // theme에서 오버라이드된 색상 사용
@@ -25,8 +27,9 @@
     }
 
     &__title {
+        font-family: config.$font-gmarket;  // Gmarket 폰트 사용 (config에서 직접 참조)
         font-size: $font-size-5xl;
-        font-weight: $font-weight-bold;
+        font-weight: 700;  // Gmarket Bold
         margin-bottom: 16px;
     }
 

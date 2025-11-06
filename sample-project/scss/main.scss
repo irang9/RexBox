@@ -17,8 +17,8 @@
 // 2. Theme import (config의 변수로 오버라이드)
 // ============================================
 // config에서 정의한 변수들을 theme에 전달하여 오버라이드합니다.
-@use '../../shared-scss/theme' as * with (
-    $primary: config.$primary,
+// 주의: 프로젝트별 폰트 변수는 theme에 전달하지 않고, config에서 직접 사용합니다.
+@use '../../shared-scss/theme' as * with ($primary: config.$primary,
     $primary-light: config.$primary-light,
     $primary-dark: config.$primary-dark,
     $primary-100: config.$primary-100,
@@ -31,16 +31,25 @@
     $primary-800: config.$primary-800,
     $primary-900: config.$primary-900,
     $secondary: config.$secondary,
-    $point: config.$point
-);
+    $point: config.$point);
 
 // ============================================
 // 3. Shared SCSS (mixins, fonts, base, utilities)
 // ============================================
 @use '../../shared-scss/mixins' as *;
-@use '../../shared-scss/fonts' as *;
+@use '../../shared-scss/fonts' as *; // 필수 폰트 (spoqa, icons)
 @use '../../shared-scss/base/reset' as *;
 @use '../../shared-scss/utilities' as *;
+
+// ============================================
+// 4. 프로젝트별 선택적 폰트
+// ============================================
+// 선택적 폰트는 프로젝트의 fonts 디렉토리에서 관리합니다.
+// shared-scss의 fonts는 기본 폰트(spoqa, icons)만 포함하며,
+// 프로젝트별 fonts는 선택적 폰트(gmarket, google, scoredream 등)를 관리합니다.
+@use 'fonts/gmarket' as *; // Gmarket 폰트
+// @use 'fonts/google' as *; // Outfit 폰트 (필요시)
+// @use 'fonts/scoredream' as *; // SCoreDream 폰트 (필요시)
 
 // ============================================
 // 3. 프로젝트 컴포넌트 스타일
@@ -75,3 +84,14 @@ body {
     padding: 0 20px;
 }
 
+// Gmarket 폰트 사용 예시
+.title-gmarket {
+    font-family: config.$font-gmarket; // GmarketSans 사용 (config에서 직접 참조)
+    font-weight: 700; // Bold
+}
+
+// 또는 직접 GmarketSans 사용
+.heading-gmarket {
+    font-family: "GmarketSans", sans-serif;
+    font-weight: 500; // Medium
+}

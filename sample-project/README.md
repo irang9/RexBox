@@ -96,7 +96,35 @@ $secondary: #4ecdc4;
 - `_config.scss`에서 변수를 정의한 후 `theme`을 import하면, 정의한 변수가 theme의 기본값을 덮어씁니다.
 - theme 파일의 변수들이 `!default`를 사용하므로, config에서 정의한 값이 우선됩니다.
 
-### 2. 프로젝트 전용 변수 추가
+### 2. 프로젝트별 선택적 폰트 추가
+
+프로젝트별 선택적 폰트는 프로젝트의 `fonts/` 디렉토리에서 관리합니다:
+
+```scss
+// 1. fonts/_gmarket.scss 파일 생성 (폰트 정의)
+@font-face {
+    font-family: 'GmarketSans';
+    src: url('...') format('woff');
+    font-weight: 300;
+}
+
+// 2. _config.scss에서 폰트 변수 정의
+$font-gmarket: "GmarketSans", "Spoqa Han Sans Neo", ...;
+
+// 3. main.scss에서 폰트 import
+@use 'fonts/gmarket' as *;
+
+// 4. 사용
+.title {
+    font-family: config.$font-gmarket;
+}
+```
+
+**주의사항:**
+- shared-scss는 기본 폰트(spoqa, icons)만 제공합니다.
+- 선택적 폰트는 프로젝트별로 다를 수 있으므로 각 프로젝트에서 관리합니다.
+
+### 3. 프로젝트 전용 변수 추가
 
 shared-scss에 없는 프로젝트 전용 변수를 추가할 수 있습니다:
 
@@ -111,7 +139,7 @@ $section-padding: 60px;
 $card-gap: 24px;
 ```
 
-### 3. 컴포넌트에서 사용
+### 4. 컴포넌트에서 사용
 
 컴포넌트 파일에서 오버라이드된 변수와 mixins를 사용할 수 있습니다:
 

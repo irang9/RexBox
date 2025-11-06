@@ -41,7 +41,16 @@ $secondary: #4ecdc4;
 $point: #ffd93d;
 
 // ============================================
-// 3. Theme import는 하지 않음
+// 3. 선택적 폰트 설정 (프로젝트별 fonts에서 관리)
+// ============================================
+// 선택적 폰트는 프로젝트의 fonts 디렉토리에서 관리합니다.
+// 폰트 파일은 main.scss에서 import하고, 여기서는 폰트 변수만 설정합니다.
+
+// Gmarket 폰트 변수 설정
+$font-gmarket: "GmarketSans", "Spoqa Han Sans Neo", "Noto Sans KR", "Nanum Gothic", "MalgunGothic", Dotum, sans-serif;
+
+// ============================================
+// 4. Theme import는 하지 않음
 // ============================================
 // theme은 main.scss에서 with로 오버라이드하여 import합니다.
 // 컴포넌트 파일에서는 직접 theme을 import하여 사용합니다.
@@ -61,4 +70,3 @@ $header-height: 80px;
 
 // 프로젝트 전용 breakpoint (필요시)
 // $custom-breakpoint: 1600px;
-

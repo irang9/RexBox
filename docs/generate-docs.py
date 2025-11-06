@@ -1257,9 +1257,6 @@ def generate_fonts_page() -> str:
     descriptions = {
         "basic": "기본 폰트",
         "monospace": "Monospace 폰트",
-        "popup": "팝업용 폰트",
-        "title": "타이틀 폰트",
-        "title-2": "타이틀 폰트 2",
     }
     
     for key, value in fonts.items():
@@ -1374,7 +1371,14 @@ def generate_fonts_page() -> str:
             <div style="margin-top: 24px; padding: 16px; background: #eff6ff; border-radius: 6px; border: 1px solid #bfdbfe;">
                 <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e40af;">사용 방법</h3>
                 <p style="margin-bottom: 12px; color: #1e40af;">SCSS 파일에서 <code class="code">@use '../../shared-scss/fonts' as *;</code> 또는 <code class="code">@use '../../shared-scss' as *;</code>를 사용하면 자동으로 Material Icons가 포함됩니다.</p>
-                <p style="margin-bottom: 0; color: #1e40af;">아이콘 이름은 <a href="https://fonts.google.com/icons" target="_blank" style="color: #2563eb; text-decoration: underline;">Google Material Icons</a>에서 확인할 수 있습니다.</p>
+                <p style="margin-bottom: 12px; color: #1e40af;">아이콘 이름은 <a href="https://fonts.google.com/icons" target="_blank" style="color: #2563eb; text-decoration: underline;">Google Material Icons</a>에서 확인할 수 있습니다.</p>
+            </div>
+            
+            <div style="margin-top: 24px; padding: 16px; background: #f0fdf4; border-radius: 6px; border: 1px solid #86efac;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #166534;">프로젝트별 선택적 폰트</h3>
+                <p style="margin-bottom: 12px; color: #166534;">shared-scss는 기본 폰트($font-basic, $font-monospace)와 Material Icons만 제공합니다.</p>
+                <p style="margin-bottom: 12px; color: #166534;">프로젝트별 선택적 폰트(Gmarket, Google Fonts, SCoreDream 등)는 각 프로젝트의 <code class="code">fonts/</code> 디렉토리에서 관리하세요.</p>
+                <p style="margin-bottom: 0; color: #166534;">자세한 사용 방법은 <a href="../sample-project/README.md" target="_blank" style="color: #16a34a; text-decoration: underline;">Sample Project README</a>를 참고하세요.</p>
             </div>
         </div>
     """

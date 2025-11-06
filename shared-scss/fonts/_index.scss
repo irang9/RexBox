@@ -13,17 +13,6 @@
 @forward 'icons'; // 아이콘 폰트 (Material Icons)
 
 // ============================================
-// 선택적 폰트 (프로젝트에서 필요 시 직접 import)
-// ============================================
-// 사용 방법:
-// @use '../../shared-scss/fonts/google' as *;  // 텍스트 폰트 (Outfit)
-// @use '../../shared-scss/fonts/gmarket' as *;
-// @use '../../shared-scss/fonts/scoredream' as *;
-//
-// 또는 여러 개를 한 번에:
-// @use '../../shared-scss/fonts/google' as *;
-// @use '../../shared-scss/fonts/gmarket' as *;
-// @use '../../shared-scss/fonts/scoredream' as *;
-//
-// 참고: 통합 파일(@use '../../shared-scss' as *)을 사용할 때는
-// 필수 폰트(spoqa, icons)만 자동으로 포함됩니다.
+// 주의: 선택적 폰트 파일(gmarket, google, scoredream)은
+// 프로젝트별 fonts 디렉토리에서 관리합니다.
+// 프로젝트별 폰트 변수는 각 프로젝트에서 직접 정의하여 사용하세요.
