@@ -5,7 +5,9 @@
 @forward 'display';
 @forward 'flex';
 @forward 'position';
+@forward 'stacks';
 @forward 'text';
+@forward 'vertical-rule';
 
 // Spacing utilities는 mixin으로 생성 범위를 통제
 @use 'spacing' as spacing;

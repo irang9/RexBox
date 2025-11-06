@@ -43,7 +43,9 @@ shared-scss/
 │   ├── _flex.scss     # Flexbox 유틸리티 클래스
 │   ├── _position.scss # Position 유틸리티 클래스
 │   ├── _spacing.scss  # Spacing 유틸리티 클래스 (margin, padding, gap)
+│   ├── _stacks.scss   # Stacks 유틸리티 클래스 (Bootstrap 스타일)
 │   ├── _text.scss     # Typography 유틸리티 클래스
+│   ├── _vertical-rule.scss # Vertical Rule 유틸리티 클래스 (Bootstrap 스타일)
 │   └── _index.scss
 └── README.md
 ```
@@ -291,8 +293,15 @@ shared-scss/
 - `_display.scss`: Display 유틸리티 클래스 (`.d-flex`, `.d-none`, `.d-block` 등)
 - `_flex.scss`: Flexbox 유틸리티 클래스 (`.flex-row`, `.justify-center`, `.items-center` 등)
 - `_position.scss`: Position 유틸리티 클래스 (`.position-relative`, `.position-absolute` 등)
+- `_stacks.scss`: Stacks 유틸리티 클래스 (Bootstrap 스타일)
+  - 수직 스택: `.vstack` (flex-direction: column)
+  - 수평 스택: `.hstack` (flex-direction: row, align-items: center)
+  - `.gap-*` 유틸리티와 함께 사용하여 간격 조절
 - `_spacing.scss`: Spacing 유틸리티 클래스 (`.m-1`, `.p-2`, `.gap-3` 등)
 - `_text.scss`: Typography 유틸리티 클래스 (`.fs-sm`, `.fw-bold`, `.text-center` 등)
+- `_vertical-rule.scss`: Vertical Rule 유틸리티 클래스 (Bootstrap 스타일)
+  - 수직 구분선: `.vr` (1px 너비, currentColor 사용, opacity: 0.25)
+  - stacks와 함께 사용하여 수평 레이아웃에 구분선 추가
 
 **사용 예시:**
 ```scss

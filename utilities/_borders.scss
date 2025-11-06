@@ -199,6 +199,10 @@ $border-color: $border-default; // theme에서 정의된 기본 border 색상
 // ============================================
 // Bootstrap v5.2+ 스타일
 // CSS 변수를 사용하여 opacity 제어
+.border-opacity-0 {
+    --border-opacity: 0;
+}
+
 .border-opacity-10 {
     --border-opacity: 0.1;
 }

@@ -27,6 +27,8 @@ NAV_ITEMS = [
     {"title": "Breakpoints", "url": "breakpoints.html"},
     {"title": "Spacing", "url": "spacing.html"},
     {"title": "Borders", "url": "borders.html"},
+    {"title": "Stacks", "url": "stacks.html"},
+    {"title": "Vertical Rule", "url": "vertical-rule.html"},
     {"title": "Mixins", "url": "mixins.html"},
 ]
 
@@ -1432,7 +1434,7 @@ def extract_borders() -> Dict[str, List[str]]:
         borders["radius"].append(match.group(1))
     
     # Border Opacity
-    pattern = r'\.(border-opacity-(?:10|25|50|75|100))\s*{'
+    pattern = r'\.(border-opacity-(?:0|10|25|50|75|100))\s*{'
     matches = re.finditer(pattern, content)
     for match in matches:
         borders["opacity"].append(match.group(1))
@@ -1567,6 +1569,7 @@ def generate_borders_page() -> str:
                     </tr>
                 </thead>
                 <tbody>
+                    <tr><td><code class="code">.border-opacity-0</code></td><td>--border-opacity: 0</td><td>0% (투명)</td></tr>
                     <tr><td><code class="code">.border-opacity-10</code></td><td>--border-opacity: 0.1</td><td>10%</td></tr>
                     <tr><td><code class="code">.border-opacity-25</code></td><td>--border-opacity: 0.25</td><td>25%</td></tr>
                     <tr><td><code class="code">.border-opacity-50</code></td><td>--border-opacity: 0.5</td><td>50%</td></tr>
@@ -1593,6 +1596,204 @@ def generate_borders_page() -> str:
 &lt;!-- 조합 사용 --&gt;
 &lt;div class="border border-primary rounded-lg"&gt;내용&lt;/div&gt;</code></pre>
             </div>
+        </div>
+    """
+    
+    return content
+
+
+# ============================================
+# Stacks 페이지
+# ============================================
+
+STACKS_FILE = ROOT_DIR / "utilities" / "_stacks.scss"
+
+def generate_stacks_page() -> str:
+    """Stacks 페이지 생성"""
+    content = """
+        <h1>Stacks</h1>
+        <p class="subtitle">Bootstrap 스타일의 stacks 유틸리티 클래스</p>
+        <p style="margin-bottom: 24px; color: #64748b;">Flexbox를 기반으로 한 간단한 레이아웃 헬퍼입니다. <a href="https://getbootstrap.com/docs/5.3/helpers/stacks/" target="_blank" style="color: #2563eb; text-decoration: underline;">Bootstrap Stacks</a>를 참고했습니다.</p>
+        
+        <div class="section">
+            <h2 class="section-title">Vertical Stack</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">수직 스택을 만들려면 <code class="code">.vstack</code>을 사용하세요. 스택된 항목은 기본적으로 전체 너비입니다. <code class="code">.gap-*</code> 유틸리티를 사용하여 항목 간 간격을 추가할 수 있습니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>CSS 속성</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code class="code">.vstack</code></td>
+                        <td>수직 스택 (flex-direction: column)</td>
+                        <td><code class="code">display: flex; flex-direction: column; flex: 1 1 auto; align-self: stretch;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">사용 예시</h3>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="vstack gap-3"&gt;
+  &lt;div class="p-2"&gt;First item&lt;/div&gt;
+  &lt;div class="p-2"&gt;Second item&lt;/div&gt;
+  &lt;div class="p-2"&gt;Third item&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Horizontal Stack</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">수평 스택을 만들려면 <code class="code">.hstack</code>을 사용하세요. 스택된 항목은 기본적으로 수직 중앙 정렬되며 필요한 너비만 차지합니다. <code class="code">.gap-*</code> 유틸리티를 사용하여 항목 간 간격을 추가할 수 있습니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>CSS 속성</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code class="code">.hstack</code></td>
+                        <td>수평 스택 (flex-direction: row, align-items: center)</td>
+                        <td><code class="code">display: flex; flex-direction: row; align-items: center; align-self: stretch;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">사용 예시</h3>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="hstack gap-3"&gt;
+  &lt;div class="p-2"&gt;First item&lt;/div&gt;
+  &lt;div class="p-2"&gt;Second item&lt;/div&gt;
+  &lt;div class="p-2"&gt;Third item&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <p style="margin-top: 16px; margin-bottom: 8px; color: #64748b;"><strong>수평 마진 유틸리티와 함께 사용:</strong></p>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="hstack gap-3"&gt;
+  &lt;div class="p-2"&gt;First item&lt;/div&gt;
+  &lt;div class="p-2 ms-auto"&gt;Second item&lt;/div&gt;
+  &lt;div class="p-2"&gt;Third item&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">실제 사용 예시</h2>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 12px; color: #1e293b;">버튼 스택 (Vertical Stack)</h3>
+            <div style="margin-bottom: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="vstack gap-2 col-md-5 mx-auto"&gt;
+  &lt;button type="button" class="btn btn-secondary"&gt;Save changes&lt;/button&gt;
+  &lt;button type="button" class="btn btn-outline-secondary"&gt;Cancel&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 12px; color: #1e293b;">인라인 폼 (Horizontal Stack)</h3>
+            <div style="margin-bottom: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="hstack gap-3"&gt;
+  &lt;input class="form-control me-auto" type="text" placeholder="Add your item here..."&gt;
+  &lt;button type="button" class="btn btn-secondary"&gt;Submit&lt;/button&gt;
+  &lt;div class="vr"&gt;&lt;/div&gt;
+  &lt;button type="button" class="btn btn-outline-danger"&gt;Reset&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">주의사항</h2>
+            <div style="padding: 16px; background: #fef3c7; border-radius: 6px; border: 1px solid #fbbf24;">
+                <p style="margin: 0; color: #92400e; font-size: 14px;"><strong>브라우저 호환성:</strong> Safari 14.5 이전 버전에서는 flexbox와 gap 유틸리티를 함께 사용할 때 지원이 제한적입니다. Grid 레이아웃은 문제가 없습니다. <a href="https://getbootstrap.com/docs/5.3/helpers/stacks/" target="_blank" style="color: #b45309; text-decoration: underline;">자세한 내용</a>을 확인하세요.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">사용 방법</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">SCSS 파일에서 <code class="code">@use '../../shared-scss/utilities' as *;</code> 또는 <code class="code">@use '../../shared-scss' as *;</code>를 사용하면 자동으로 stacks 유틸리티 클래스가 포함됩니다.</p>
+        </div>
+    """
+    
+    return content
+
+
+# ============================================
+# Vertical Rule 페이지
+# ============================================
+
+VERTICAL_RULE_FILE = ROOT_DIR / "utilities" / "_vertical-rule.scss"
+
+def generate_vertical_rule_page() -> str:
+    """Vertical Rule 페이지 생성"""
+    content = """
+        <h1>Vertical Rule</h1>
+        <p class="subtitle">Bootstrap 스타일의 vertical rule 유틸리티 클래스</p>
+        <p style="margin-bottom: 24px; color: #64748b;">수직 구분선을 만드는 헬퍼 클래스입니다. <code class="code">&lt;hr&gt;</code> 요소와 유사한 스타일의 수직 구분선을 제공합니다. <a href="https://getbootstrap.com/docs/5.3/helpers/vertical-rule/" target="_blank" style="color: #2563eb; text-decoration: underline;">Bootstrap Vertical Rule</a>을 참고했습니다.</p>
+        
+        <div class="section">
+            <h2 class="section-title">Vertical Rule</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">수직 구분선을 만들려면 <code class="code">.vr</code> 클래스를 사용하세요.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>CSS 속성</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code class="code">.vr</code></td>
+                        <td>수직 구분선</td>
+                        <td><code class="code">display: inline-block; align-self: stretch; width: 1px; min-height: 1em; background-color: currentColor; opacity: 0.25;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">기본 사용 예시</h3>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="vr"&gt;&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Flex 레이아웃에서 사용</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">Vertical rule은 flex 레이아웃에서 높이가 자동으로 조절됩니다.</p>
+            <div style="margin-top: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">사용 예시</h3>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="d-flex" style="height: 200px;"&gt;
+  &lt;div class="vr"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Stacks와 함께 사용</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">Stacks와 함께 사용하여 수평 레이아웃에 구분선을 추가할 수 있습니다.</p>
+            <div style="margin-top: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">사용 예시</h3>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="hstack gap-3"&gt;
+  &lt;div class="p-2"&gt;First item&lt;/div&gt;
+  &lt;div class="p-2 ms-auto"&gt;Second item&lt;/div&gt;
+  &lt;div class="vr"&gt;&lt;/div&gt;
+  &lt;div class="p-2"&gt;Third item&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">특징</h2>
+            <ul style="margin: 0; padding-left: 24px; color: #334155;">
+                <li style="margin-bottom: 8px;">1px 너비</li>
+                <li style="margin-bottom: 8px;">min-height: 1em</li>
+                <li style="margin-bottom: 8px;">currentColor와 opacity: 0.25로 색상 설정</li>
+                <li style="margin-bottom: 8px;">flex 레이아웃에서 높이가 자동으로 조절됨</li>
+                <li style="margin-bottom: 8px;">추가 스타일로 커스터마이징 가능</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">사용 방법</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">SCSS 파일에서 <code class="code">@use '../../shared-scss/utilities' as *;</code> 또는 <code class="code">@use '../../shared-scss' as *;</code>를 사용하면 자동으로 vertical rule 유틸리티 클래스가 포함됩니다.</p>
         </div>
     """
     
@@ -2012,6 +2213,18 @@ def main():
     borders_content = generate_borders_page()
     with open(DOCS_DIR / "borders.html", 'w', encoding='utf-8') as f:
         f.write(generate_html_page("Borders", borders_content, "borders.html"))
+    
+    # Stacks 페이지
+    print("  - stacks.html 생성 중...")
+    stacks_content = generate_stacks_page()
+    with open(DOCS_DIR / "stacks.html", 'w', encoding='utf-8') as f:
+        f.write(generate_html_page("Stacks", stacks_content, "stacks.html"))
+    
+    # Vertical Rule 페이지
+    print("  - vertical-rule.html 생성 중...")
+    vertical_rule_content = generate_vertical_rule_page()
+    with open(DOCS_DIR / "vertical-rule.html", 'w', encoding='utf-8') as f:
+        f.write(generate_html_page("Vertical Rule", vertical_rule_content, "vertical-rule.html"))
     
     # Fonts 페이지
     print("  - fonts.html 생성 중...")

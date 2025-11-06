@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breakpoints - Shared SCSS</title>
+    <title>Stacks - Shared SCSS</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="%231e293b"/%3E%3Ctext x="50" y="70" font-family="monospace" font-size="60" text-anchor="middle" fill="white"%3ES%3C/text%3E%3C/svg%3E">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     
@@ -315,10 +315,10 @@
                 <li><a href="colors.html">Colors</a></li>
                 <li><a href="typography.html">Typography</a></li>
                 <li><a href="fonts.html">Fonts</a></li>
-                <li><a href="breakpoints.html" class="active">Breakpoints</a></li>
+                <li><a href="breakpoints.html">Breakpoints</a></li>
                 <li><a href="spacing.html">Spacing</a></li>
                 <li><a href="borders.html">Borders</a></li>
-                <li><a href="stacks.html">Stacks</a></li>
+                <li><a href="stacks.html" class="active">Stacks</a></li>
                 <li><a href="vertical-rule.html">Vertical Rule</a></li>
                 <li><a href="mixins.html">Mixins</a></li>
 
@@ -329,157 +329,106 @@
     <main class="main-content">
         <div class="container">
             
-        <h1>Breakpoints</h1>
-        <p class="subtitle">반응형 디자인을 위한 breakpoint 값들</p>
+        <h1>Stacks</h1>
+        <p class="subtitle">Bootstrap 스타일의 stacks 유틸리티 클래스</p>
+        <p style="margin-bottom: 24px; color: #64748b;">Flexbox를 기반으로 한 간단한 레이아웃 헬퍼입니다. <a href="https://getbootstrap.com/docs/5.3/helpers/stacks/" target="_blank" style="color: #2563eb; text-decoration: underline;">Bootstrap Stacks</a>를 참고했습니다.</p>
         
         <div class="section">
-            <h2 class="section-title">Breakpoint Map</h2>
+            <h2 class="section-title">Vertical Stack</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">수직 스택을 만들려면 <code class="code">.vstack</code>을 사용하세요. 스택된 항목은 기본적으로 전체 너비입니다. <code class="code">.gap-*</code> 유틸리티를 사용하여 항목 간 간격을 추가할 수 있습니다.</p>
             <table>
                 <thead>
                     <tr>
-                        <th>이름</th>
-                        <th>값</th>
-                        <th>용도</th>
-                        <th>사용 예시</th>
-                    </tr>
-                </thead>
-                <tbody>
-    
-                    <tr>
-                        <td><code class="code">xxs</code></td>
-                        <td><code class="code">320px</code></td>
-                        <td>초소형 모바일</td>
-                        <td><code class="code">@include up("xxs")</code></td>
-                    </tr>
-        
-                    <tr>
-                        <td><code class="code">xs</code></td>
-                        <td><code class="code">360px</code></td>
-                        <td>소형 모바일</td>
-                        <td><code class="code">@include up("xs")</code></td>
-                    </tr>
-        
-                    <tr>
-                        <td><code class="code">sm</code></td>
-                        <td><code class="code">480px</code></td>
-                        <td>중형 모바일</td>
-                        <td><code class="code">@include up("sm")</code></td>
-                    </tr>
-        
-                    <tr>
-                        <td><code class="code">md</code></td>
-                        <td><code class="code">576px</code></td>
-                        <td>대형 모바일</td>
-                        <td><code class="code">@include up("md")</code></td>
-                    </tr>
-        
-                    <tr>
-                        <td><code class="code">lg</code></td>
-                        <td><code class="code">768px</code></td>
-                        <td>태블릿</td>
-                        <td><code class="code">@include up("lg")</code></td>
-                    </tr>
-        
-                    <tr>
-                        <td><code class="code">xl</code></td>
-                        <td><code class="code">992px</code></td>
-                        <td>소형 데스크톱</td>
-                        <td><code class="code">@include up("xl")</code></td>
-                    </tr>
-        
-                    <tr>
-                        <td><code class="code">2xl</code></td>
-                        <td><code class="code">1024px</code></td>
-                        <td>데스크톱</td>
-                        <td><code class="code">@include up("2xl")</code></td>
-                    </tr>
-        
-                    <tr>
-                        <td><code class="code">3xl</code></td>
-                        <td><code class="code">1200px</code></td>
-                        <td>대형 데스크톱</td>
-                        <td><code class="code">@include up("3xl")</code></td>
-                    </tr>
-        
-                    <tr>
-                        <td><code class="code">4xl</code></td>
-                        <td><code class="code">1400px</code></td>
-                        <td>초대형 데스크톱</td>
-                        <td><code class="code">@include up("4xl")</code></td>
-                    </tr>
-        
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="section">
-            <h2 class="section-title">Core Mixins</h2>
-            <p>Map 기반 breakpoint mixin 사용법:</p>
-            <table style="margin-top: 16px;">
-                <thead>
-                    <tr>
-                        <th>Mixin</th>
+                        <th>클래스</th>
                         <th>설명</th>
-                        <th>사용 예시</th>
-                        <th>적용 범위 예시</th>
+                        <th>CSS 속성</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><code class="code">@include up("xs")</code></td>
-                        <td>위로 (min-width) - Mobile First</td>
-                        <td><code class="code">@include up("xs") { ... }</code></td>
-                        <td>360px 이상 (소형 모바일 이상)</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code">@include down("md")</code></td>
-                        <td>아래로 (max-width) - Desktop First</td>
-                        <td><code class="code">@include down("md") { ... }</code></td>
-                        <td>575.98px 이하 (대형 모바일 이하)</td>
-                    </tr>
-                    <tr>
-                        <td><code class="code">@include between("xs", "lg")</code></td>
-                        <td>범위 (between) - 특정 범위 지정</td>
-                        <td><code class="code">@include between("xs", "lg") { ... }</code></td>
-                        <td>360px ~ 767.98px (소형 모바일 ~ 태블릿)</td>
+                        <td><code class="code">.vstack</code></td>
+                        <td>수직 스택 (flex-direction: column)</td>
+                        <td><code class="code">display: flex; flex-direction: column; flex: 1 1 auto; align-self: stretch;</code></td>
                     </tr>
                 </tbody>
             </table>
-            
             <div style="margin-top: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
                 <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">사용 예시</h3>
-                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6;"><code>.container {
-    padding: 16px;
-    
-    @include up("md") {
-        padding: 24px;  // 576px 이상에서 적용
-    }
-    
-    @include down("sm") {
-        padding: 12px;  // 479.98px 이하에서 적용
-    }
-    
-    @include between("md", "xl") {
-        max-width: 1200px;  // 576px ~ 991.98px 범위에서 적용
-    }
-}</code></pre>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="vstack gap-3"&gt;
+  &lt;div class="p-2"&gt;First item&lt;/div&gt;
+  &lt;div class="p-2"&gt;Second item&lt;/div&gt;
+  &lt;div class="p-2"&gt;Third item&lt;/div&gt;
+&lt;/div&gt;</code></pre>
             </div>
         </div>
         
         <div class="section">
-            <h2 class="section-title">기존 변수 (하위 호환성)</h2>
-            <p>다음 변수들은 Map 기반 breakpoint에서 자동으로 생성됩니다:</p>
-            <ul style="margin-top: 16px; padding-left: 24px;">
-                <li><code class="code">$mobile-xxs</code> = <code class="code">$bp["xxs"]</code></li>
-                <li><code class="code">$mobile-xs</code> = <code class="code">$bp["xs"]</code></li>
-                <li><code class="code">$mobile-sm</code> = <code class="code">$bp["sm"]</code></li>
-                <li><code class="code">$mobile</code> = <code class="code">$bp["md"]</code></li>
-                <li><code class="code">$desktop-xs</code> = <code class="code">$bp["lg"]</code></li>
-                <li><code class="code">$desktop-sm</code> = <code class="code">$bp["xl"]</code></li>
-                <li><code class="code">$desktop</code> = <code class="code">$bp["2xl"]</code></li>
-                <li><code class="code">$desktop-lg</code> = <code class="code">$bp["3xl"]</code></li>
-                <li><code class="code">$desktop-xl</code> = <code class="code">$bp["4xl"]</code></li>
-            </ul>
+            <h2 class="section-title">Horizontal Stack</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">수평 스택을 만들려면 <code class="code">.hstack</code>을 사용하세요. 스택된 항목은 기본적으로 수직 중앙 정렬되며 필요한 너비만 차지합니다. <code class="code">.gap-*</code> 유틸리티를 사용하여 항목 간 간격을 추가할 수 있습니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>CSS 속성</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code class="code">.hstack</code></td>
+                        <td>수평 스택 (flex-direction: row, align-items: center)</td>
+                        <td><code class="code">display: flex; flex-direction: row; align-items: center; align-self: stretch;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">사용 예시</h3>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="hstack gap-3"&gt;
+  &lt;div class="p-2"&gt;First item&lt;/div&gt;
+  &lt;div class="p-2"&gt;Second item&lt;/div&gt;
+  &lt;div class="p-2"&gt;Third item&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <p style="margin-top: 16px; margin-bottom: 8px; color: #64748b;"><strong>수평 마진 유틸리티와 함께 사용:</strong></p>
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="hstack gap-3"&gt;
+  &lt;div class="p-2"&gt;First item&lt;/div&gt;
+  &lt;div class="p-2 ms-auto"&gt;Second item&lt;/div&gt;
+  &lt;div class="p-2"&gt;Third item&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">실제 사용 예시</h2>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 12px; color: #1e293b;">버튼 스택 (Vertical Stack)</h3>
+            <div style="margin-bottom: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="vstack gap-2 col-md-5 mx-auto"&gt;
+  &lt;button type="button" class="btn btn-secondary"&gt;Save changes&lt;/button&gt;
+  &lt;button type="button" class="btn btn-outline-secondary"&gt;Cancel&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            
+            <h3 style="font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 12px; color: #1e293b;">인라인 폼 (Horizontal Stack)</h3>
+            <div style="margin-bottom: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="hstack gap-3"&gt;
+  &lt;input class="form-control me-auto" type="text" placeholder="Add your item here..."&gt;
+  &lt;button type="button" class="btn btn-secondary"&gt;Submit&lt;/button&gt;
+  &lt;div class="vr"&gt;&lt;/div&gt;
+  &lt;button type="button" class="btn btn-outline-danger"&gt;Reset&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">주의사항</h2>
+            <div style="padding: 16px; background: #fef3c7; border-radius: 6px; border: 1px solid #fbbf24;">
+                <p style="margin: 0; color: #92400e; font-size: 14px;"><strong>브라우저 호환성:</strong> Safari 14.5 이전 버전에서는 flexbox와 gap 유틸리티를 함께 사용할 때 지원이 제한적입니다. Grid 레이아웃은 문제가 없습니다. <a href="https://getbootstrap.com/docs/5.3/helpers/stacks/" target="_blank" style="color: #b45309; text-decoration: underline;">자세한 내용</a>을 확인하세요.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">사용 방법</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">SCSS 파일에서 <code class="code">@use '../../shared-scss/utilities' as *;</code> 또는 <code class="code">@use '../../shared-scss' as *;</code>를 사용하면 자동으로 stacks 유틸리티 클래스가 포함됩니다.</p>
         </div>
     
         </div>

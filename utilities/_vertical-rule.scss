@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+// ============================================
+// Vertical Rule Utilities
+// ============================================
+// Bootstrap 스타일의 vertical rule 유틸리티
+// 참고: https://getbootstrap.com/docs/5.3/helpers/vertical-rule/
+// 수직 구분선을 만드는 헬퍼 클래스
+
+// ============================================
+// Vertical Rule
+// ============================================
+// 수직 구분선: <hr> 요소와 유사한 스타일의 수직 구분선
+// - 1px 너비
+// - min-height: 1em
+// - currentColor와 opacity로 색상 설정
+// - flex 레이아웃에서 높이가 자동으로 조절됨
+.vr {
+    display: inline-block;
+    align-self: stretch;
+    width: 1px;
+    min-height: 1em;
+    background-color: currentColor;
+    opacity: 0.25;
+}
+
