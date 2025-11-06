@@ -68,7 +68,7 @@ class ThemeColorsHandler(FileSystemEventHandler):
 def main():
     """메인 함수"""
     root_dir = Path(__file__).parent.parent
-    script_path = root_dir / "color-guide" / "generate-theme-colors.py"
+    script_path = root_dir / "docs" / "generate-theme-colors.py"
     watch_paths = [
         root_dir / "variables" / "_colors.scss",
         root_dir / "theme" / "_index.scss"

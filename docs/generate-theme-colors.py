@@ -11,10 +11,10 @@ from typing import Dict, List, Tuple
 
 # 프로젝트 루트 디렉토리
 ROOT_DIR = Path(__file__).parent.parent
-COLOR_GUIDE_DIR = ROOT_DIR / "color-guide"
+DOCS_DIR = ROOT_DIR / "docs"
 VARIABLES_COLORS_FILE = ROOT_DIR / "variables" / "_colors.scss"
 THEME_FILE = ROOT_DIR / "theme" / "_index.scss"
-OUTPUT_FILE = COLOR_GUIDE_DIR / "index.html"
+OUTPUT_FILE = DOCS_DIR / "index.html"
 
 
 def extract_color_variables(scss_file: Path) -> Dict[str, str]:

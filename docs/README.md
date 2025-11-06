@@ -10,14 +10,16 @@ shared-scss의 theme과 variables 색상 팔레트를 브라우저에서 확인�
 
 **Private 리포지토리인 경우:**
 - GitHub Pages는 Public 리포지토리 또는 GitHub Enterprise(유료) 필요
-- 로컬에서 확인하는 것이 가장 간단: `open color-guide/index.html`
+- 로컬에서 확인하는 것이 가장 간단: `open docs/index.html`
 
 **Public 리포지토리인 경우:**
 - GitHub Pages 사용 가능 (무료):
   1. GitHub 리포지토리 → **Settings** → **Pages**
-  2. **Source**에서 `main` 브랜치 선택
-  3. **Save** 클릭
-  4. 몇 분 후 접근: `https://irang9.github.io/shared-scss/color-guide/`
+  2. **Source**에서 "Deploy from a branch" 선택
+  3. **Branch**에서 `main` 브랜치 선택
+  4. **Folder**에서 `/docs` 선택
+  5. **Save** 클릭
+  6. 몇 분 후 접근: `https://irang9.github.io/shared-scss/`
 
 자세한 내용은 `GITHUB_VIEW.md` 참고
 
@@ -26,13 +28,13 @@ shared-scss의 theme과 variables 색상 팔레트를 브라우저에서 확인�
 이 파일은 `generate-theme-colors.py` 스크립트를 실행하여 자동 생성됩니다:
 
 ```bash
-python3 color-guide/generate-theme-colors.py
+python3 docs/generate-theme-colors.py
 ```
 
 또는
 
 ```bash
-cd color-guide
+cd docs
 ./generate-theme-colors.py
 ```
 
@@ -51,7 +53,7 @@ pip3 install watchdog
 2. **서비스 설치** (한 번만):
 
 ```bash
-./color-guide/install-service.sh
+./docs/install-service.sh
 ```
 
 이제 색상 파일을 저장하면 자동으로 `index.html`이 생성되며, 컴퓨터를 재부팅해도 계속 작동합니다.
@@ -84,20 +86,20 @@ pip3 install watchdog
 2. **감시 시작**:
 
 ```bash
-./color-guide/start-watcher.sh
+./docs/start-watcher.sh
 ```
 
 또는 직접:
 
 ```bash
-python3 color-guide/watch-theme-colors.py
+python3 docs/watch-theme-colors.py
 ```
 
 색상 파일(`variables/_colors.scss`, `theme/_index.scss`)을 저장하면 자동으로 `index.html`이 생성됩니다.
 
 **백그라운드 실행:**
 ```bash
-nohup python3 color-guide/watch-theme-colors.py > /dev/null 2>&1 &
+nohup python3 docs/watch-theme-colors.py > /dev/null 2>&1 &
 ```
 
 #### 방법 2: Git Hook (Commit 시 자동화)
@@ -121,13 +123,13 @@ VS Code에서 수동으로 실행하려면:
 필요한 경우 수동으로 실행:
 
 ```bash
-python3 color-guide/generate-theme-colors.py
+python3 docs/generate-theme-colors.py
 ```
 
 ### 파일 구조
 
 ```
-color-guide/
+docs/
 ├── README.md                    # 이 파일
 ├── GITHUB_VIEW.md               # GitHub에서 보는 방법 가이드
 ├── generate-theme-colors.py     # HTML 생성 스크립트

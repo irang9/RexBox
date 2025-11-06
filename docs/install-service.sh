@@ -36,8 +36,8 @@ sed "s|/usr/bin/python3|$PYTHON_PATH|g" "$PLIST_FILE" > "$LAUNCH_AGENTS_DIR/$PLI
 
 # 스크립트 경로 업데이트
 SCRIPT_PATH="$SCRIPT_DIR/watch-theme-colors.py"
-sed -i '' "s|/Users/irang/Github/shared-scss/color-guide/watch-theme-colors.py|$SCRIPT_PATH|g" "$LAUNCH_AGENTS_DIR/$PLIST_NAME"
-sed -i '' "s|/Users/irang/Github/shared-scss|$SCRIPT_DIR/..|g" "$LAUNCH_AGENTS_DIR/$PLIST_NAME"
+sed -i '' "s|REPLACE_WITH_SCRIPT_PATH|$SCRIPT_PATH|g" "$LAUNCH_AGENTS_DIR/$PLIST_NAME"
+sed -i '' "s|REPLACE_WITH_WORKING_DIR|$SCRIPT_DIR/..|g" "$LAUNCH_AGENTS_DIR/$PLIST_NAME"
 
 # 서비스 시작
 echo "🔄 서비스 시작 중..."
@@ -57,7 +57,7 @@ if [ $? -eq 0 ]; then
     echo "   launchctl unload $LAUNCH_AGENTS_DIR/$PLIST_NAME"
     echo ""
     echo "🗑️  서비스 제거:"
-    echo "   ./color-guide/uninstall-service.sh"
+    echo "   ./docs/uninstall-service.sh"
     echo ""
     echo "이제 컴퓨터를 재부팅해도 자동으로 실행됩니다! 🎉"
 else

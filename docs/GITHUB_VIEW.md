@@ -18,9 +18,11 @@ GitHub에 올라간 `index.html`을 렌더링된 상태로 보는 방법입니�
 1. GitHub 리포지토리 → **Settings** → **General** → **Danger Zone**
 2. **Change repository visibility** → **Change visibility** → **Make public**
 3. **Settings** → **Pages**로 이동
-4. **Source**에서 브랜치 선택 (`main` 또는 `master`)
-5. **Save** 클릭
-6. 몇 분 후 접근: `https://irang9.github.io/shared-scss/color-guide/`
+4. **Source**에서 "Deploy from a branch" 선택
+5. **Branch**에서 `main` 브랜치 선택
+6. **Folder**에서 `/docs` 선택
+7. **Save** 클릭
+8. 몇 분 후 접근: `https://irang9.github.io/shared-scss/`
 
 ### 옵션 2: GitHub Enterprise 사용 (유료)
 
@@ -32,13 +34,13 @@ GitHub 없이 로컬에서 확인:
 
 ```bash
 # HTML 파일을 직접 브라우저에서 열기
-open color-guide/index.html
+open docs/index.html
 ```
 
 또는 로컬 서버 실행:
 
 ```bash
-cd color-guide
+cd docs
 python3 -m http.server 8000
 # 브라우저에서 http://localhost:8000 접속
 ```
@@ -49,11 +51,13 @@ python3 -m http.server 8000
 
 **설정 방법:**
 1. GitHub 리포지토리에서 **Settings** → **Pages**로 이동
-2. **Source**에서 브랜치 선택 (`main` 또는 `master`)
-3. **Save** 클릭
-4. 몇 분 후 다음 URL로 접근:
+2. **Source**에서 "Deploy from a branch" 선택
+3. **Branch**에서 `main` 브랜치 선택
+4. **Folder**에서 `/docs` 선택
+5. **Save** 클릭
+6. 몇 분 후 다음 URL로 접근:
    ```
-   https://irang9.github.io/shared-scss/color-guide/
+   https://irang9.github.io/shared-scss/
    ```
 
 **장점:**
@@ -67,11 +71,11 @@ python3 -m http.server 8000
 리포지토리가 **Public**인 경우:
 
 ```
-https://raw.githubusercontent.com/irang9/shared-scss/main/color-guide/index.html
+https://raw.githubusercontent.com/irang9/shared-scss/main/docs/index.html
 ```
 
 **사용 방법:**
-1. GitHub에서 `color-guide/index.html` 파일을 열기
+1. GitHub에서 `docs/index.html` 파일을 열기
 2. "Raw" 버튼 클릭
 3. 브라우저에서 HTML이 렌더링된 상태로 표시됨
 
@@ -81,12 +85,12 @@ https://raw.githubusercontent.com/irang9/shared-scss/main/color-guide/index.html
 
 1. **htmlpreview.github.io**:
    ```
-   https://htmlpreview.github.io/?https://raw.githubusercontent.com/irang9/shared-scss/main/color-guide/index.html
+   https://htmlpreview.github.io/?https://raw.githubusercontent.com/irang9/shared-scss/main/docs/index.html
    ```
 
 2. **raw.githack.com**:
    ```
-   https://raw.githack.com/irang9/shared-scss/main/color-guide/index.html
+   https://raw.githack.com/irang9/shared-scss/main/docs/index.html
    ```
 
 ## 추천
