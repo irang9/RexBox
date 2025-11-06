@@ -83,8 +83,47 @@ def sort_color_by_brightness(color_list: List[Tuple[str, str]]) -> List[Tuple[st
     return sorted(color_list, key=get_sort_key)
 
 
+def get_category_order_from_file(color_vars: Dict[str, str]) -> Dict[str, int]:
+    """variables/_colors.scss 파일에서 카테고리가 나타나는 순서를 추적합니다."""
+    category_order = {}
+    order = 0
+    seen_categories = set()
+    
+    # 파일에서 변수 정의 순서대로 읽기
+    with open(VARIABLES_COLORS_FILE, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # 변수 추출 패턴
+    pattern = r'\$([a-z0-9-]+):\s*#[0-9a-fA-F]{3,8}\s*;'
+    matches = re.finditer(pattern, content)
+    
+    for match in matches:
+        var_name = match.group(1)
+        
+        # 카테고리 추출
+        if var_name in ['white', 'white-real', 'black', 'black-real']:
+            category = 'Global'
+        else:
+            parts = var_name.split('-')
+            if len(parts) > 1:
+                category = parts[0].capitalize()
+            else:
+                continue
+        
+        # 카테고리가 처음 나타날 때만 순서 기록
+        if category not in seen_categories:
+            seen_categories.add(category)
+            category_order[category] = order
+            order += 1
+    
+    return category_order
+
+
 def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[str, str]]) -> str:
     """HTML 파일 내용을 생성합니다."""
+    
+    # 카테고리 순서 가져오기
+    category_order_map = get_category_order_from_file(color_vars)
     
     # 색상 카테고리별로 분류
     categories = {
@@ -561,7 +600,18 @@ def generate_html(color_vars: Dict[str, str], theme_mappings: Dict[str, Tuple[st
             <h2 class="section-title">Color Palettes</h2>
 """
     
-    for category, color_list in sorted(categories.items()):
+    # 카테고리를 variables/_colors.scss 파일의 순서대로 정렬
+    # Global이 가장 먼저, 그 다음은 파일에서 나타나는 순서대로
+    def get_category_sort_key(item):
+        category, color_list = item
+        if category == 'Global':
+            return (-1, category)  # Global이 가장 앞
+        order = category_order_map.get(category, 999)  # 순서가 없으면 뒤로
+        return (order, category)
+    
+    sorted_categories = sorted(categories.items(), key=get_category_sort_key)
+    
+    for category, color_list in sorted_categories:
         if not color_list:
             continue
         
