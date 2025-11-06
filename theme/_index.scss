@@ -22,25 +22,25 @@
 // Background Colors
 // ============================================
 $bg-light: $yellow-200;           // 밝은 배경
-$bg-subtle: $gray-100;            // 미묘한 배경
+$bg-subtle: $slate-100;            // 미묘한 배경
 $bg-default: $white;              // 기본 배경
 $bg-dark: $gray-900;              // 어두운 배경
 
 // ============================================
 // Text Colors
 // ============================================
-$text-primary: $gray-900;         // 주요 텍스트
-$text-secondary: $gray-600;       // 보조 텍스트
-$text-tertiary: $gray-400;        // 3차 텍스트
-$text-disabled: $gray-300;        // 비활성 텍스트
+$text-primary: $black;         // 주요 텍스트
+$text-secondary: $slate-600;       // 보조 텍스트
+$text-tertiary: $slate-400;        // 3차 텍스트
+$text-disabled: $slate-300;        // 비활성 텍스트
 $text-inverse: $white;            // 반전 텍스트 (어두운 배경용)
 
 // ============================================
 // Border Colors
 // ============================================
-$border-light: $gray-200;         // 밝은 테두리
-$border-default: $gray-300;       // 기본 테두리
-$border-dark: $gray-500;          // 어두운 테두리
+$border-light: $slate-200;         // 밝은 테두리
+$border-default: $slate-300;       // 기본 테두리
+$border-dark: $slate-500;          // 어두운 테두리
 
 // ============================================
 // Brand Colors (Semantic)

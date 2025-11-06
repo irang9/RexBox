@@ -1,14 +1,35 @@
 @charset "utf-8";
 
+// ============================================
+// Color Palette (Tailwind-based)
+// ============================================
+// 원시 색상 팔레트는 Tailwind 스타일을 참조하지만,
+// 실제 사용은 theme/_index.scss의 semantic 변수를 사용합니다.
+//
+// 사용 예시:
+// ✅ 권장: $primary, $success, $text-primary 등 (semantic 변수)
+// ❌ 비권장: $blue-600, $green-500 등 (원시 색상 직접 사용)
+//
+// 이유:
+// - Semantic 변수는 프로젝트별로 오버라이드 가능
+// - 디자인 시스템의 일관성 유지
+// - 색상 변경 시 theme 파일만 수정하면 됨
+//
+// 참고:
+// - Bootstrap 기반 semantic 변수는 theme/_index.scss에 정의됨
+// - 이 파일은 원시 색상 팔레트만 제공 (빌딩 블록)
 
 //  ------- Global Colors
-$white : #FCFCFC;
-$white-000: #ffffff;
-$white-real : $white-000;
+// 디자인 시스템에서 완벽한 흰색(#ffffff)과 검은색(#000000)은
+// 너무 강한 대비로 인해 눈의 피로를 유발할 수 있습니다.
+// 따라서 기본값으로는 약간 조정된 색상을 사용하고,
+// 필요시에만 순수 색상을 사용하도록 합니다.
 
-$black: #212121;
-$black-000 : #000000;
-$black-real: $black-000;
+$white: #FCFCFC;           // 기본 흰색 (조정된 색상)
+$white-real: #ffffff;      // 순수 흰색 (필요시 사용)
+
+$black: #212121;           // 기본 검은색 (조정된 색상)
+$black-real: #000000;      // 순수 검은색 (필요시 사용)
 
 // preline slate
 $slate-50: #f8fafc;
@@ -298,54 +319,4 @@ $yellow-800: #854d0e;
 $yellow-900: #713f12;
 $yellow-950: #422006;
 
-
-
-
-// --------------------- 정리 예정 //
-
-
-
-
-
-// $text-900 : #212121; // $text는 없앨 예정
-// $text-800 : #303030;
-// $text-700 : #414141;
-// $text-500 : #868686; 
-// $text-300 : #D9D9D9; 
-// $text-300 : #F7F7FA; 
-
-$black-100 : #F7F7FA; 
-$black-200 : #EDEDED;
-$black-300 : #D9D9D9;
-$black-400 : #B1B1B1;
-$black-500 : #868686;
-$black-600 : #636363;
-$black-700 : #414141; 
-$black-800 : #303030;
-$black-900 : #212121; 
-
-// $slate-100 : #ECEFF5;
-// $slate-200 : #D8DDE7;
-// $slate-300 : #BFC5D3;
-// $slate-400 : #A0A7B9;
-// $slate-500 : #858DA2;
-// $slate-600 : #6F778C;
-// $slate-700 : #535A6F;
-// $slate-800 : #394055;
-// $slate-900 : #292F41;
-
-$slate-old-100 : #dee4ec;
-$slate-old-200 : #C6CCD5;
-$slate-old-300 : #A3AEBE;
-$slate-old-500 : #6E7785;
-
-$slate-light-100 : #F4F6FA;
-$slate-light-200 : #EAEEF4;
-$slate-light-300 : #DEE4EC;
-$slate-light-400 : #C6D0DD;
-$slate-light-500 : #A8B7CB;
-$slate-light-600 : #8798AF;
-$slate-light-700 : #6E7D91;
-$slate-light-800 : #637083;
-$slate-light-900 : #4F5965;
 
