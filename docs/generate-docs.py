@@ -849,15 +849,13 @@ def generate_breakpoints_page() -> str:
     
     # Breakpoint 용도 설명
     descriptions = {
-        "xxs": "초소형 모바일",
+        "xxs": "최소 모바일",
         "xs": "소형 모바일",
-        "sm": "중형 모바일",
-        "md": "대형 모바일",
-        "lg": "태블릿",
-        "xl": "소형 데스크톱",
-        "2xl": "데스크톱",
-        "3xl": "대형 데스크톱",
-        "4xl": "초대형 데스크톱",
+        "sm": "중형 모바일 (Bootstrap 표준)",
+        "md": "대형 모바일/태블릿 (Bootstrap 표준)",
+        "lg": "태블릿/소형 데스크톱 (Bootstrap 표준)",
+        "xl": "데스크톱 (Bootstrap 표준)",
+        "xxl": "대형 데스크톱 (Bootstrap 표준)",
     }
     
     # 정렬된 breakpoints (값 순서대로)
@@ -902,13 +900,13 @@ def generate_breakpoints_page() -> str:
                         <td><code class="code">@include down("md")</code></td>
                         <td>아래로 (max-width) - Desktop First</td>
                         <td><code class="code">@include down("md") { ... }</code></td>
-                        <td>575.98px 이하 (대형 모바일 이하)</td>
+                        <td>767.98px 이하 (태블릿 이하)</td>
                     </tr>
                     <tr>
                         <td><code class="code">@include between("xs", "lg")</code></td>
                         <td>범위 (between) - 특정 범위 지정</td>
                         <td><code class="code">@include between("xs", "lg") { ... }</code></td>
-                        <td>360px ~ 767.98px (소형 모바일 ~ 태블릿)</td>
+                        <td>360px ~ 991.98px (소형 모바일 ~ 소형 데스크톱)</td>
                     </tr>
                 </tbody>
             </table>
@@ -919,15 +917,15 @@ def generate_breakpoints_page() -> str:
     padding: 16px;
     
     @include up("md") {
-        padding: 24px;  // 576px 이상에서 적용
+        padding: 24px;  // 768px 이상에서 적용
     }
     
     @include down("sm") {
-        padding: 12px;  // 479.98px 이하에서 적용
+        padding: 12px;  // 575.98px 이하에서 적용
     }
     
     @include between("md", "xl") {
-        max-width: 1200px;  // 576px ~ 991.98px 범위에서 적용
+        max-width: 1200px;  // 768px ~ 1199.98px 범위에서 적용
     }
 }</code></pre>
             </div>
@@ -937,15 +935,15 @@ def generate_breakpoints_page() -> str:
             <h2 class="section-title">기존 변수 (하위 호환성)</h2>
             <p>다음 변수들은 Map 기반 breakpoint에서 자동으로 생성됩니다:</p>
             <ul style="margin-top: 16px; padding-left: 24px;">
-                <li><code class="code">$mobile-xxs</code> = <code class="code">$bp["xxs"]</code></li>
-                <li><code class="code">$mobile-xs</code> = <code class="code">$bp["xs"]</code></li>
-                <li><code class="code">$mobile-sm</code> = <code class="code">$bp["sm"]</code></li>
-                <li><code class="code">$mobile</code> = <code class="code">$bp["md"]</code></li>
-                <li><code class="code">$desktop-xs</code> = <code class="code">$bp["lg"]</code></li>
-                <li><code class="code">$desktop-sm</code> = <code class="code">$bp["xl"]</code></li>
-                <li><code class="code">$desktop</code> = <code class="code">$bp["2xl"]</code></li>
-                <li><code class="code">$desktop-lg</code> = <code class="code">$bp["3xl"]</code></li>
-                <li><code class="code">$desktop-xl</code> = <code class="code">$bp["4xl"]</code></li>
+                <li><code class="code">$mobile-xxs</code> = <code class="code">$bp["xxs"]</code> (320px)</li>
+                <li><code class="code">$mobile-xs</code> = <code class="code">$bp["xs"]</code> (360px)</li>
+                <li><code class="code">$mobile-sm</code> = <code class="code">$bp["sm"]</code> (576px)</li>
+                <li><code class="code">$mobile</code> = <code class="code">$bp["md"]</code> (768px)</li>
+                <li><code class="code">$desktop-xs</code> = <code class="code">$bp["lg"]</code> (992px)</li>
+                <li><code class="code">$desktop-sm</code> = <code class="code">$bp["xl"]</code> (1200px)</li>
+                <li><code class="code">$desktop</code> = <code class="code">$bp["xxl"]</code> (1400px)</li>
+                <li><code class="code">$desktop-lg</code> = <code class="code">$bp["xxl"]</code> (1400px)</li>
+                <li><code class="code">$desktop-xl</code> = <code class="code">$bp["xxl"]</code> (1400px)</li>
             </ul>
         </div>
     """

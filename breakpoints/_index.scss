@@ -9,17 +9,15 @@
 // ============================================
 // Breakpoint Map
 // ============================================
-// 이름형 키로 도메인에 녹이는 방식
+// Bootstrap 5 표준과 일치하는 breakpoint 설정
 $bp: (
-    "xxs": 320px,   // 기존 mobile-xxs
-    "xs": 360px,    // 기존 mobile-xs
-    "sm": 480px,    // 기존 mobile-sm
-    "md": 576px,    // 기존 mobile
-    "lg": 768px,    // 기존 desktop-xs
-    "xl": 992px,    // 기존 desktop-sm
-    "2xl": 1024px,  // 기존 desktop
-    "3xl": 1200px,  // 기존 desktop-lg
-    "4xl": 1400px   // 기존 desktop-xl
+    "xxs": 320px,   // 최소 모바일
+    "xs": 360px,    // 소형 모바일
+    "sm": 576px,    // 중형 모바일 (Bootstrap 표준)
+    "md": 768px,    // 대형 모바일/태블릿 (Bootstrap 표준)
+    "lg": 992px,    // 태블릿/소형 데스크톱 (Bootstrap 표준)
+    "xl": 1200px,   // 데스크톱 (Bootstrap 표준)
+    "xxl": 1400px   // 대형 데스크톱 (Bootstrap 표준)
 );
 
 // ============================================
@@ -75,9 +73,9 @@ $mobile-sm: map-get($bp, "sm");
 $mobile: map-get($bp, "md");
 $desktop-xs: map-get($bp, "lg");
 $desktop-sm: map-get($bp, "xl");
-$desktop: map-get($bp, "2xl");
-$desktop-lg: map-get($bp, "3xl");
-$desktop-xl: map-get($bp, "4xl");
+$desktop: map-get($bp, "xxl");
+$desktop-lg: map-get($bp, "xxl");
+$desktop-xl: map-get($bp, "xxl");
 
 // ============================================
 // 하위 호환성을 위한 기존 Mixins (선택적 사용)
@@ -123,19 +121,19 @@ $desktop-xl: map-get($bp, "4xl");
 }
 
 @mixin desktop {
-    @include down("2xl") {
+    @include down("xxl") {
         @content;
     }
 }
 
 @mixin desktop-lg {
-    @include down("3xl") {
+    @include down("xxl") {
         @content;
     }
 }
 
 @mixin desktop-xl {
-    @include down("4xl") {
+    @include down("xxl") {
         @content;
     }
 }
@@ -172,19 +170,19 @@ $desktop-xl: map-get($bp, "4xl");
 }
 
 @mixin from-desktop {
-    @include up("2xl") {
+    @include up("xxl") {
         @content;
     }
 }
 
 @mixin from-desktop-lg {
-    @include up("3xl") {
+    @include up("xxl") {
         @content;
     }
 }
 
 @mixin from-desktop-xl {
-    @include up("4xl") {
+    @include up("xxl") {
         @content;
     }
 }
