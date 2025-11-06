@@ -77,7 +77,7 @@ $secondary: #4ecdc4;
 @use '../shared-scss/shared-scss/theme' as *;
 ```
 
-자세한 사용 방법은 [sample-project](./sample-project/)를 참고하세요.
+자세한 사용 방법은 [sample-project](../sample-project/)를 참고하세요.
 
 ## ✨ 주요 기능
 
@@ -121,8 +121,7 @@ $secondary: #4ecdc4;
 ## 📖 문서
 
 - [온라인 문서](https://irang9.github.io/shared-scss/) - 모든 변수와 설정값 확인
-- [Sample Project](./sample-project/) - 사용 예제
-- [Shared SCSS README](./shared-scss/README.md) - 상세 문서
+- [Sample Project](../sample-project/) - 사용 예제
 
 ## 🎯 사용 예시
 
@@ -175,7 +174,7 @@ $secondary: #4ecdc4;
 
 ## 🔧 커스터마이징
 
-프로젝트별로 색상, spacing 등을 커스터마이징할 수 있습니다. 자세한 방법은 [sample-project](./sample-project/README.md)를 참고하세요.
+프로젝트별로 색상, spacing 등을 커스터마이징할 수 있습니다. 자세한 방법은 [sample-project](../sample-project/README.md)를 참고하세요.
 
 ## 📝 라이선스
 
