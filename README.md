@@ -90,7 +90,7 @@ HTML 형식의 문서가 들어있는 디렉토리입니다. GitHub Pages를 통
 - **stacks.html**: Stacks 유틸리티 문서
 - **vertical-rule.html**: Vertical Rule 유틸리티 문서
 - **mixins.html**: Mixins 문서
-- **generate-docs.py**: 문서 자동 생성 스크립트
+- **scripts/**: 문서 생성 스크립트 디렉토리
 
 **문서 업데이트:**
 `rexbox/` 디렉토리의 SCSS 파일을 수정한 후, 다음 명령어로 문서를 자동 생성할 수 있습니다:
