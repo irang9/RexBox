@@ -114,7 +114,7 @@ $secondary: #4ecdc4;
 
 ### Utilities (유틸리티 클래스)
 - **Borders**: Border 추가/제거, width, color, radius, opacity
-- **Colors**: 색상 유틸리티
+- **Colors**: `.text-*`, `.bg-*`, `.bg-*-subtle`, `.text-bg-*` 등 semantic 색상 유틸리티
 - **Display**: Display 유틸리티
 - **Flex**: Flexbox 유틸리티
 - **Width**: `.w-25`, `.w-50`, `.w-100`, `.w-fit`, `.w-max` 등 백분율/콘텐츠 기반 너비
@@ -177,6 +177,13 @@ $secondary: #4ecdc4;
         <span>Item 2</span>
     </div>
 </div>
+```
+
+### Color Utilities 사용
+```html
+<button class="text-bg-primary border-0">Primary Action</button>
+<span class="bg-success-subtle text-success px-3 py-2 rounded">Success badge</span>
+<p class="text-muted">보조 텍스트</p>
 ```
 
 ### Container / Row 사용

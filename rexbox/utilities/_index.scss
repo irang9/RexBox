@@ -1,5 +1,17 @@
 @charset "utf-8";
 
+@use 'colors';
+@use 'borders';
+@use 'display';
+@use 'flex';
+@use 'width';
+@use 'position';
+@use 'container';
+@use 'responsive';
+@use 'stacks';
+@use 'text';
+@use 'vertical-rule';
+
 @forward 'borders';
 @forward 'colors';
 @forward 'display';

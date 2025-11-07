@@ -1133,25 +1133,44 @@ def generate_spacing_page() -> str:
         <p style="margin-bottom: 24px; color: #64748b;">RexBox의 spacing 유틸리티는 Bootstrap의 spacing helper를 참고했습니다. <code class="code">.m-*</code>, <code class="code">.p-*</code>, <code class="code">.gap-*</code> 형태로 제공됩니다.</p>
     """
     
-    for key, value in spacing.items():
-        desc = "기본 간격 단위 (margin, padding 기본값)" if key == "spacer" else ""
-        content += f"""
+    if spacing:
+        content += """
+        <div class="section">
+            <h2 class="section-title">Spacing Variables</h2>
+            <table>
+                <thead>
                     <tr>
-                        <td><code class="code">${key}</code></td>
-                        <td><code class="code">{value}</code></td>
+                        <th>변수</th>
+                        <th>값</th>
+                        <th>설명</th>
+                    </tr>
+                </thead>
+                <tbody>
+        """
+        
+        for key, value in spacing.items():
+            desc = "기본 간격 단위 (margin, padding 기본값)" if key == "spacer" else ""
+            content += f"""
+                    <tr>
+                        <td><code class=\"code\">${key}</code></td>
+                        <td><code class=\"code\">{value}</code></td>
                         <td>{desc}</td>
                     </tr>
         """
-    
-    content += """
+        
+        content += """
                 </tbody>
             </table>
         </div>
-        
+        """
+    
+    content += """
         <div class="section">
             <h2 class="section-title">Spacing Utility Classes</h2>
             <p>다음 utility classes를 사용하여 간격을 빠르게 적용할 수 있습니다:</p>
-            
+    """
+    
+    content += """
             <h3 style="font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 12px; color: #1e293b;">Margin Utilities</h3>
             <table>
                 <thead>
@@ -1162,17 +1181,17 @@ def generate_spacing_page() -> str:
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td><code class="code">m-0</code></td><td>margin: 0</td><td>0</td></tr>
-                    <tr><td><code class="code">m-1</code></td><td>margin: 0.25rem</td><td>4px</td></tr>
-                    <tr><td><code class="code">m-2</code></td><td>margin: 0.5rem</td><td>8px</td></tr>
-                    <tr><td><code class="code">m-3</code></td><td>margin: 1rem</td><td>16px</td></tr>
-                    <tr><td><code class="code">m-4</code></td><td>margin: 1.5rem</td><td>24px</td></tr>
-                    <tr><td><code class="code">m-5</code></td><td>margin: 3rem</td><td>48px</td></tr>
-                    <tr><td><code class="code">mt-2</code></td><td>margin-top: 0.5rem</td><td>8px</td></tr>
-                    <tr><td><code class="code">mb-2</code></td><td>margin-bottom: 0.5rem</td><td>8px</td></tr>
-                    <tr><td><code class="code">ms-2</code></td><td>margin-left: 0.5rem</td><td>8px</td></tr>
-                    <tr><td><code class="code">me-2</code></td><td>margin-right: 0.5rem</td><td>8px</td></tr>
-                    <tr><td><code class="code">m-auto</code></td><td>margin: auto</td><td>auto</td></tr>
+                    <tr><td><code class=\"code\">m-0</code></td><td>margin: 0</td><td>0</td></tr>
+                    <tr><td><code class=\"code\">m-1</code></td><td>margin: 0.25rem</td><td>4px</td></tr>
+                    <tr><td><code class=\"code\">m-2</code></td><td>margin: 0.5rem</td><td>8px</td></tr>
+                    <tr><td><code class=\"code\">m-3</code></td><td>margin: 1rem</td><td>16px</td></tr>
+                    <tr><td><code class=\"code\">m-4</code></td><td>margin: 1.5rem</td><td>24px</td></tr>
+                    <tr><td><code class=\"code\">m-5</code></td><td>margin: 3rem</td><td>48px</td></tr>
+                    <tr><td><code class=\"code\">mt-2</code></td><td>margin-top: 0.5rem</td><td>8px</td></tr>
+                    <tr><td><code class=\"code\">mb-2</code></td><td>margin-bottom: 0.5rem</td><td>8px</td></tr>
+                    <tr><td><code class=\"code\">ms-2</code></td><td>margin-left: 0.5rem</td><td>8px</td></tr>
+                    <tr><td><code class=\"code\">me-2</code></td><td>margin-right: 0.5rem</td><td>8px</td></tr>
+                    <tr><td><code class=\"code\">m-auto</code></td><td>margin: auto</td><td>auto</td></tr>
                 </tbody>
             </table>
             
@@ -1186,18 +1205,18 @@ def generate_spacing_page() -> str:
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td><code class="code">p-0</code></td><td>padding: 0</td><td>0</td></tr>
-                    <tr><td><code class="code">p-1</code></td><td>padding: 0.25rem</td><td>4px</td></tr>
-                    <tr><td><code class="code">p-2</code></td><td>padding: 0.5rem</td><td>8px</td></tr>
-                    <tr><td><code class="code">p-3</code></td><td>padding: 1rem</td><td>16px</td></tr>
-                    <tr><td><code class="code">p-4</code></td><td>padding: 1.5rem</td><td>24px</td></tr>
-                    <tr><td><code class="code">p-5</code></td><td>padding: 3rem</td><td>48px</td></tr>
-                    <tr><td><code class="code">pt-2</code></td><td>padding-top: 0.5rem</td><td>8px</td></tr>
-                    <tr><td><code class="code">pb-2</code></td><td>padding-bottom: 0.5rem</td><td>8px</td></tr>
-                    <tr><td><code class="code">ps-2</code></td><td>padding-left: 0.5rem</td><td>8px</td></tr>
-                    <tr><td><code class="code">pe-2</code></td><td>padding-right: 0.5rem</td><td>8px</td></tr>
-                    <tr><td><code class="code">px-2</code></td><td>padding-left + padding-right: 0.5rem</td><td>8px</td></tr>
-                    <tr><td><code class="code">py-2</code></td><td>padding-top + padding-bottom: 0.5rem</td><td>8px</td></tr>
+                    <tr><td><code class=\"code\">p-0</code></td><td>padding: 0</td><td>0</td></tr>
+                    <tr><td><code class=\"code\">p-1</code></td><td>padding: 0.25rem</td><td>4px</td></tr>
+                    <tr><td><code class=\"code\">p-2</code></td><td>padding: 0.5rem</td><td>8px</td></tr>
+                    <tr><td><code class=\"code\">p-3</code></td><td>padding: 1rem</td><td>16px</td></tr>
+                    <tr><td><code class=\"code\">p-4</code></td><td>padding: 1.5rem</td><td>24px</td></tr>
+                    <tr><td><code class=\"code\">p-5</code></td><td>padding: 3rem</td><td>48px</td></tr>
+                    <tr><td><code class=\"code\">pt-2</code></td><td>padding-top: 0.5rem</td><td>8px</td></tr>
+                    <tr><td><code class=\"code\">pb-2</code></td><td>padding-bottom: 0.5rem</td><td>8px</td></tr>
+                    <tr><td><code class=\"code\">ps-2</code></td><td>padding-left: 0.5rem</td><td>8px</td></tr>
+                    <tr><td><code class=\"code\">pe-2</code></td><td>padding-right: 0.5rem</td><td>8px</td></tr>
+                    <tr><td><code class=\"code\">px-2</code></td><td>padding-left + padding-right: 0.5rem</td><td>8px</td></tr>
+                    <tr><td><code class=\"code\">py-2</code></td><td>padding-top + padding-bottom: 0.5rem</td><td>8px</td></tr>
                 </tbody>
             </table>
             
@@ -1211,17 +1230,17 @@ def generate_spacing_page() -> str:
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td><code class="code">gap-1</code></td><td>gap: 0.25rem</td><td>4px</td></tr>
-                    <tr><td><code class="code">gap-2</code></td><td>gap: 0.5rem</td><td>8px</td></tr>
-                    <tr><td><code class="code">gap-3</code></td><td>gap: 1rem</td><td>16px</td></tr>
-                    <tr><td><code class="code">gap-4</code></td><td>gap: 1.5rem</td><td>24px</td></tr>
-                    <tr><td><code class="code">gap-5</code></td><td>gap: 3rem</td><td>48px</td></tr>
+                    <tr><td><code class=\"code\">gap-1</code></td><td>gap: 0.25rem</td><td>4px</td></tr>
+                    <tr><td><code class=\"code\">gap-2</code></td><td>gap: 0.5rem</td><td>8px</td></tr>
+                    <tr><td><code class=\"code\">gap-3</code></td><td>gap: 1rem</td><td>16px</td></tr>
+                    <tr><td><code class=\"code\">gap-4</code></td><td>gap: 1.5rem</td><td>24px</td></tr>
+                    <tr><td><code class=\"code\">gap-5</code></td><td>gap: 3rem</td><td>48px</td></tr>
                 </tbody>
             </table>
             
             <div style="margin-top: 24px; padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
                 <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">사용 방법</h3>
-                <p style="margin-bottom: 12px; color: #64748b;">SCSS 파일에서 <code class="code">@include spacing-utils;</code>를 사용하여 utility classes를 생성합니다:</p>
+                <p style="margin-bottom: 12px; color: #64748b;">SCSS 파일에서 <code class=\"code\">@include spacing-utils;</code>를 사용하여 utility classes를 생성합니다:</p>
                 <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6;"><code>// 모든 utility classes 생성
 @include spacing-utils;
 
