@@ -117,6 +117,7 @@ $secondary: #4ecdc4;
 - **Colors**: 색상 유틸리티
 - **Display**: Display 유틸리티
 - **Flex**: Flexbox 유틸리티
+- **Width**: `.w-25`, `.w-50`, `.w-100`, `.w-fit`, `.w-max` 등 백분율/콘텐츠 기반 너비
 - **Container**: `.container`, `.container-fluid`, `.row` 등 경량 레이아웃 구조
 - **Spacing**: Margin, padding, gap
 - **Stacks**: `.vstack`, `.hstack` (Bootstrap 스타일)

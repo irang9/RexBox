@@ -1,0 +1,30 @@
+@charset "utf-8";
+
+// ============================================
+// Width Utilities
+// ============================================
+//  다양한 백분율 기반 width 클래스를 제공
+//  - w-25, w-33, w-50, w-66, w-75, w-100
+//  - w-auto, w-fit, w-max
+
+@use 'sass:map';
+
+$width-utilities: (
+    '25': 25%,
+    '33': 33.333333%,
+    '50': 50%,
+    '66': 66.666667%,
+    '75': 75%,
+    '100': 100%,
+    'auto': auto,
+    'fit': fit-content,
+    'max': max-content
+);
+
+@each $suffix, $value in $width-utilities {
+    .w-#{$suffix} {
+        width: $value !important;
+    }
+}
+
+

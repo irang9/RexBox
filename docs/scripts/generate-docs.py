@@ -27,6 +27,7 @@ NAV_ITEMS = [
     {"title": "Fonts", "url": "fonts.html"},
     {"title": "Breakpoints", "url": "breakpoints.html"},
     {"title": "Spacing", "url": "spacing.html"},
+    {"title": "Width", "url": "width.html"},
     {"title": "Container", "url": "container.html"},
     {"title": "Borders", "url": "borders.html"},
     {"title": "Stacks", "url": "stacks.html"},
@@ -1094,18 +1095,7 @@ def generate_spacing_page() -> str:
     content = """
         <h1>Spacing</h1>
         <p class="subtitle">간격 관련 변수 및 Utility Classes</p>
-        
-        <div class="section">
-            <h2 class="section-title">Spacing Variables</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>변수명</th>
-                        <th>값</th>
-                        <th>설명</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <p style="margin-bottom: 24px; color: #64748b;">RexBox의 spacing 유틸리티는 Bootstrap의 spacing helper를 참고했습니다. <code class="code">.m-*</code>, <code class="code">.p-*</code>, <code class="code">.gap-*</code> 형태로 제공됩니다.</p>
     """
     
     for key, value in spacing.items():
@@ -1207,6 +1197,93 @@ def generate_spacing_page() -> str:
         </div>
     """
     
+    content += """
+        <p style="margin-top: 16px; color: #64748b;">Spacing 유틸리티는 모두 <code class="code">!important</code>를 사용하므로, 특정 컴포넌트에서 강제 적용할 때 유용합니다.</p>
+    """
+    
+    return content
+
+
+# ============================================
+# Width 페이지
+# ============================================
+
+WIDTH_FILE = ROOT_DIR / "utilities" / "_width.scss"
+
+def generate_width_page() -> str:
+    """Width Utilities 페이지 생성"""
+    content = """
+        <h1>Width Utilities</h1>
+        <p class="subtitle">공통 백분율 기반 width 헬퍼 클래스</p>
+        <p style="margin-bottom: 24px; color: #64748b;"><code class="code">.w-*</code> 접두사는 요소에 고정된 너비를 적용할 때 유용합니다. Tailwind의 width 유틸리티에서 자주 쓰는 분수를 기준으로 선택했습니다.</p>
+    """
+
+    content += """
+        <div class="section">
+            <h2 class="section-title">클래스 요약</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>클래스</th>
+                        <th>설명</th>
+                        <th>CSS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><code class="code">.w-25</code></td><td>너비 25%</td><td><code class="code">width: 25%</code></td></tr>
+                    <tr><td><code class="code">.w-33</code></td><td>너비 33.333%</td><td><code class="code">width: 33.333333%</code></td></tr>
+                    <tr><td><code class="code">.w-50</code></td><td>너비 50%</td><td><code class="code">width: 50%</code></td></tr>
+                    <tr><td><code class="code">.w-66</code></td><td>너비 66.666%</td><td><code class="code">width: 66.666667%</code></td></tr>
+                    <tr><td><code class="code">.w-75</code></td><td>너비 75%</td><td><code class="code">width: 75%</code></td></tr>
+                    <tr><td><code class="code">.w-100</code></td><td>너비 100%</td><td><code class="code">width: 100%</code></td></tr>
+                    <tr><td><code class="code">.w-auto</code></td><td>너비 자동</td><td><code class="code">width: auto</code></td></tr>
+                    <tr><td><code class="code">.w-fit</code></td><td>콘텐츠에 맞춤</td><td><code class="code">width: fit-content</code></td></tr>
+                    <tr><td><code class="code">.w-max</code></td><td>최대 콘텐츠 너비</td><td><code class="code">width: max-content</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+    """
+
+    content += """
+        <div class="section">
+            <h2 class="section-title">사용 예시</h2>
+            <div style="display: grid; gap: 24px;">
+                <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">간단한 컬럼 분할</h3>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="row"&gt;
+  &lt;div class="w-50 bg-slate-100 p-3 rounded"&gt;Half&lt;/div&gt;
+  &lt;div class="w-50 bg-slate-200 p-3 rounded"&gt;Half&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    <p style="margin-top: 12px; color: #64748b;">더 정밀한 레이아웃이 필요하면 <code class="code">flex-1</code>, <code class="code">mobile-flex-column</code> 등과 조합하세요.</p>
+                </div>
+
+                <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">자동/콘텐츠 기반</h3>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;button class="w-fit px-4 py-2 bg-primary text-white rounded"&gt;
+  Fit Button
+&lt;/button&gt;
+
+&lt;div class="w-max bg-slate-100 p-3"&gt;
+  최대 콘텐츠 너비
+&lt;/div&gt;</code></pre>
+                </div>
+
+                <div style="padding: 16px; background: #f8fafc; border-radius: 6px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">Responsive 조합</h3>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;div class="row"&gt;
+  &lt;div class="mobile-w-100 desktop-w-50 p-3 bg-slate-100"&gt;
+    모바일 전체, 데스크톱 절반
+  &lt;/div&gt;
+  &lt;div class="mobile-w-100 desktop-w-50 p-3 bg-slate-200"&gt;
+    모바일 전체, 데스크톱 절반
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    <p style="margin-top: 12px; color: #64748b;">반응형 width 유틸리티는 Responsive 접두사 페이지의 패턴을 참고하세요.</p>
+                </div>
+            </div>
+        </div>
+    """
+
     return content
 
 
@@ -2486,6 +2563,12 @@ def main():
     spacing_content = generate_spacing_page()
     with open(DOCS_DIR / "spacing.html", 'w', encoding='utf-8') as f:
         f.write(generate_html_page("Spacing", spacing_content, "spacing.html"))
+    
+    # Width 페이지
+    print("  - width.html 생성 중...")
+    width_content = generate_width_page()
+    with open(DOCS_DIR / "width.html", 'w', encoding='utf-8') as f:
+        f.write(generate_html_page("Width", width_content, "width.html"))
     
     # Container 페이지
     print("  - container.html 생성 중...")
