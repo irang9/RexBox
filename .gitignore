@@ -26,6 +26,9 @@ dist/
 build/
 *.css
 *.css.map
+# 예외: docs/css/ 디렉토리의 CSS 파일은 Git에 포함 (문서 사이트용)
+!docs/css/
+!docs/css/*.css
 
 # Temporary files
 *.tmp
