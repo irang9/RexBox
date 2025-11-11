@@ -2,6 +2,8 @@
 
 RexBox 라이브러리의 모든 변수, mixins, 유틸리티 클래스를 확인할 수 있는 HTML 문서입니다.
 
+**이 문서 사이트는 RexBox의 사양서 역할을 하며, 동시에 개별 프로젝트 예제 역할도 겸합니다.** 문서 사이트 자체가 RexBox 클래스를 사용하여 구성되어 있어, 문서를 보면서 동시에 실제 사용 예시를 확인할 수 있습니다.
+
 ## 📚 온라인 문서
 
 **👉 [온라인 문서 보기](https://irang9.github.io/rexbox/)** (GitHub Pages)
@@ -11,7 +13,7 @@ RexBox 라이브러리의 모든 변수, mixins, 유틸리티 클래스를 확�
 다음 HTML 문서들이 자동 생성됩니다:
 
 - **index.html** - 문서 홈페이지
-- **colors.html** - 색상 변수 및 테마 색상
+- **theme.html** - 색상 변수 및 테마 색상
 - **typography.html** - 타이포그래피 변수
 - **fonts.html** - 폰트 변수 및 Material Icons
 - **breakpoints.html** - Breakpoint 변수 및 mixins
@@ -19,10 +21,12 @@ RexBox 라이브러리의 모든 변수, mixins, 유틸리티 클래스를 확�
 - **width.html** - Width 유틸리티
 - **container.html** - Container / Row 레이아웃
 - **borders.html** - Border 유틸리티 클래스
+- **buttons.html** - Button 유틸리티 클래스
 - **stacks.html** - Stacks 유틸리티 클래스
 - **vertical-rule.html** - Vertical Rule 유틸리티 클래스
 - **mixins.html** - Mixins
 - **responsive.html** - Responsive 유틸리티 (mobile/desktop 접두사)
+- **sample.html** - 테스트용 샘플 페이지
 
 ## 🔧 문서 생성
 
@@ -93,22 +97,6 @@ python3 docs/scripts/watch-theme-colors.py
 
 SCSS 파일을 저장하면 자동으로 모든 문서 페이지가 생성됩니다.
 
-## 🌐 GitHub Pages 배포
-
-### Public 리포지토리
-
-1. GitHub 리포지토리 → **Settings** → **Pages**
-2. **Source**: "Deploy from a branch" 선택
-3. **Branch**: `main` (또는 기본 브랜치)
-4. **Folder**: `/docs` 선택
-5. **Save** 클릭
-6. 몇 분 후 접근: `https://irang9.github.io/rexbox/`
-
-### Private 리포지토리
-
-- GitHub Pages는 Public 리포지토리 또는 GitHub Enterprise(유료) 필요
-- 로컬에서 확인: `open docs/index.html`
-
 ## 📁 파일 구조
 
 ```
@@ -122,6 +110,12 @@ docs/
 │   ├── install-service.sh       # macOS 서비스 설치
 │   ├── uninstall-service.sh     # macOS 서비스 제거
 │   └── com.rexbox.docs-watcher.plist  # macOS launchd 설정
+├── scss/                        # 문서 사이트 전용 SCSS
+│   ├── main.scss                # 메인 스타일 파일
+│   ├── _config.scss             # 문서 사이트 설정
+│   └── components/              # 문서 컴포넌트 스타일
+├── css/                         # 컴파일된 CSS (Git에 포함)
+│   └── main.css
 ├── assets/                      # 정적 파일들
 │   ├── favicon.ico
 │   └── favicon.png
@@ -133,14 +127,6 @@ docs/
 - HTML 문서 파일들은 자동 생성되므로 **직접 수정하지 마세요**
 - SCSS 파일을 수정한 후에는 문서를 재생성하세요
 - Python 3.6 이상이 필요합니다
-
-## 📘 Layout & Responsive 문서
-
-- `container.html`에서 기본 컨테이너, row, gutter 조정 방법을 확인할 수 있습니다.
-- `responsive.html`에서는 <code class="code">mobile-*</code> / <code class="code">desktop-*</code> 접두사 유틸리티를 소개합니다.
-
-- 예시: <code class="code">.w-50</code>, <code class="code">.container</code>, <code class="code">.row</code>, <code class="code">mobile-only</code>, <code class="code">desktop-flex-row</code>, <code class="code">mobile-vstack</code>
-- 상세 가이드는 각 문서 페이지에서 확인하세요.
 
 ## 📖 더 알아보기
 
