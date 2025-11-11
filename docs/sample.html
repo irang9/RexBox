@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample - RexBox</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="%231e293b"/%3E%3Ctext x="50" y="70" font-family="monospace" font-size="60" text-anchor="middle" fill="white"%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    
+    <aside class="docs-sidebar">
+        <div class="docs-sidebar-header">
+            <a href="index.html" class="docs-sidebar-title">RexBox</a>
+            <a href="https://github.com/irang9/rexbox" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
+                <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 14px; height: 14px; fill: currentColor; margin-right: 6px; vertical-align: middle;">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                </svg>
+                GitHub
+            </a>
+        </div>
+        <nav class="docs-nav">
+            <ul class="docs-nav-list">
+                    <li><a href="index.html" class="docs-nav-link">Home</a></li>
+                <li><a href="colors.html" class="docs-nav-link">Colors</a></li>
+                <li><a href="typography.html" class="docs-nav-link">Typography</a></li>
+                <li><a href="fonts.html" class="docs-nav-link">Fonts</a></li>
+                <li><a href="breakpoints.html" class="docs-nav-link">Breakpoints</a></li>
+                <li><a href="spacing.html" class="docs-nav-link">Spacing</a></li>
+                <li><a href="width.html" class="docs-nav-link">Width</a></li>
+                <li><a href="container.html" class="docs-nav-link">Container</a></li>
+                <li><a href="borders.html" class="docs-nav-link">Borders</a></li>
+                <li><a href="buttons.html" class="docs-nav-link">Buttons</a></li>
+                <li><a href="stacks.html" class="docs-nav-link">Stacks</a></li>
+                <li><a href="responsive.html" class="docs-nav-link">Responsive</a></li>
+                <li><a href="vertical-rule.html" class="docs-nav-link">Vertical Rule</a></li>
+                <li><a href="mixins.html" class="docs-nav-link">Mixins</a></li>
+                <li><a href="sample.html" class="docs-nav-link" class="active">Sample</a></li>
+
+            </ul>
+        </nav>
+    </aside>
+    
+    <main class="docs-main">
+        <div class="docs-container">
+            
+        <h1>Sample</h1>
+        <p class="subtitle">RexBox의 다양한 유틸리티 클래스를 테스트해볼 수 있는 페이지입니다.</p>
+        
+        <div class="section">
+            <h2 class="section-title">Buttons</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px;">
+                <button class="btn btn-primary">Primary</button>
+                <button class="btn btn-secondary">Secondary</button>
+                <button class="btn btn-success">Success</button>
+                <button class="btn btn-danger">Danger</button>
+                <button class="btn btn-warning">Warning</button>
+                <button class="btn btn-info">Info</button>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px;">
+                <button class="btn btn-outline btn-outline-primary">Outline Primary</button>
+                <button class="btn btn-outline btn-outline-secondary">Outline Secondary</button>
+                <button class="btn btn-outline btn-outline-success">Outline Success</button>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                <button class="btn btn-primary btn-sm">Small</button>
+                <button class="btn btn-primary">Default</button>
+                <button class="btn btn-primary btn-lg">Large</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Colors</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                <div class="bg-primary text-white p-3 rounded">bg-primary</div>
+                <div class="bg-secondary text-white p-3 rounded">bg-secondary</div>
+                <div class="bg-success text-white p-3 rounded">bg-success</div>
+                <div class="bg-danger text-white p-3 rounded">bg-danger</div>
+                <div class="bg-warning text-black-soft p-3 rounded">bg-warning</div>
+                <div class="bg-info text-white p-3 rounded">bg-info</div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px;">
+                <div class="bg-primary-100 p-3 rounded">bg-primary-100</div>
+                <div class="bg-primary-500 text-white p-3 rounded">bg-primary-500</div>
+                <div class="bg-primary-900 text-white p-3 rounded">bg-primary-900</div>
+                <div class="bg-slate-200 p-3 rounded">bg-slate-200</div>
+                <div class="bg-slate-500 text-white p-3 rounded">bg-slate-500</div>
+                <div class="bg-slate-800 text-white p-3 rounded">bg-slate-800</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Typography</h2>
+            <div style="margin-bottom: 24px;">
+                <h1 class="fs-3xl fw-bold">Heading 1 (fs-3xl)</h1>
+                <h2 class="fs-2xl fw-semibold">Heading 2 (fs-2xl)</h2>
+                <h3 class="fs-xl fw-medium">Heading 3 (fs-xl)</h3>
+                <p class="fs-base">Base text (fs-base)</p>
+                <p class="fs-sm text-secondary">Small text (fs-sm)</p>
+                <p class="fs-xs text-secondary">Extra small text (fs-xs)</p>
+            </div>
+            <div>
+                <p class="fw-light">Light weight (fw-light)</p>
+                <p class="fw-normal">Normal weight (fw-normal)</p>
+                <p class="fw-medium">Medium weight (fw-medium)</p>
+                <p class="fw-semibold">Semibold weight (fw-semibold)</p>
+                <p class="fw-bold">Bold weight (fw-bold)</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Borders</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 16px;">
+                <div class="border p-3 rounded">rounded</div>
+                <div class="border p-3 rounded-1">rounded-1</div>
+                <div class="border p-3 rounded-2">rounded-2</div>
+                <div class="border p-3 rounded-3">rounded-3</div>
+                <div class="border p-3 rounded-4">rounded-4</div>
+                <div class="border p-3 rounded-5">rounded-5</div>
+                <div class="border p-3 rounded-6">rounded-6</div>
+                <div class="border p-3 rounded-7">rounded-7</div>
+                <div class="border p-3 rounded-8">rounded-8</div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px;">
+                <div class="border border-primary p-3">border-primary</div>
+                <div class="border border-secondary p-3">border-secondary</div>
+                <div class="border border-success p-3">border-success</div>
+                <div class="border border-danger p-3">border-danger</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Spacing</h2>
+            <div style="margin-bottom: 24px;">
+                <div class="bg-primary-subtle p-1 mb-1">p-1 mb-1</div>
+                <div class="bg-primary-subtle p-2 mb-2">p-2 mb-2</div>
+                <div class="bg-primary-subtle p-3 mb-3">p-3 mb-3</div>
+                <div class="bg-primary-subtle p-4 mb-4">p-4 mb-4</div>
+                <div class="bg-primary-subtle p-5 mb-5">p-5 mb-5</div>
+            </div>
+            <div>
+                <div class="bg-secondary-subtle m-1">m-1</div>
+                <div class="bg-secondary-subtle m-2">m-2</div>
+                <div class="bg-secondary-subtle m-3">m-3</div>
+                <div class="bg-secondary-subtle m-4">m-4</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Stacks</h2>
+            <div class="stack stack-horizontal gap-3 mb-4">
+                <div class="bg-primary text-white p-3 rounded">Item 1</div>
+                <div class="bg-primary text-white p-3 rounded">Item 2</div>
+                <div class="bg-primary text-white p-3 rounded">Item 3</div>
+            </div>
+            <div class="stack stack-vertical gap-2">
+                <div class="bg-secondary text-white p-3 rounded">Item 1</div>
+                <div class="bg-secondary text-white p-3 rounded">Item 2</div>
+                <div class="bg-secondary text-white p-3 rounded">Item 3</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Width</h2>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="bg-primary-subtle p-2 w-25">w-25</div>
+                <div class="bg-primary-subtle p-2 w-50">w-50</div>
+                <div class="bg-primary-subtle p-2 w-75">w-75</div>
+                <div class="bg-primary-subtle p-2 w-100">w-100</div>
+            </div>
+        </div>
+        
+        </div>
+    </main>
+</body>
+</html>

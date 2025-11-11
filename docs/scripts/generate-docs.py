@@ -35,322 +35,31 @@ NAV_ITEMS = [
     {"title": "Responsive", "url": "responsive.html"},
     {"title": "Vertical Rule", "url": "vertical-rule.html"},
     {"title": "Mixins", "url": "mixins.html"},
+    {"title": "Sample", "url": "sample.html"},
 ]
 
 
-def get_common_styles() -> str:
-    """공통 CSS 스타일"""
-    return """
-    <style>
-        @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
-        @import url(//fonts.googleapis.com/icon?family=Material+Icons);
-        @import url(//fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp);
-        @import url(//fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: "Spoqa Han Sans Neo", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
-            background: #f5f5f5;
-            line-height: 1.6;
-            display: flex;
-            min-height: 100vh;
-        }
-        .sidebar {
-            width: 240px;
-            background: white;
-            border-right: 1px solid #e2e8f0;
-            position: fixed;
-            left: 0;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-            z-index: 100;
-            box-shadow: 2px 0 4px rgba(0,0,0,0.05);
-        }
-        .sidebar-header {
-            padding: 24px 20px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .sidebar-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1e293b;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 8px;
-        }
-        .sidebar-github {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            background: #1e293b;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-        .sidebar-github:hover {
-            background: #334155;
-        }
-        .sidebar-github svg {
-            width: 14px;
-            height: 14px;
-            fill: currentColor;
-        }
-        .sidebar-nav {
-            padding: 16px 0;
-        }
-        .sidebar-nav ul {
-            list-style: none;
-        }
-        .sidebar-nav li {
-            margin: 0;
-        }
-        .sidebar-nav a {
-            display: block;
-            padding: 10px 20px;
-            color: #64748b;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s;
-            border-left: 3px solid transparent;
-        }
-        .sidebar-nav a:hover {
-            background: #f8fafc;
-            color: #2563eb;
-        }
-        .sidebar-nav a.active {
-            background: #eff6ff;
-            color: #2563eb;
-            border-left-color: #2563eb;
-            font-weight: 600;
-        }
-        .main-content {
-            flex: 1;
-            margin-left: 240px;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 32px 40px;
-        }
-        h1 {
-            color: #212121;
-            margin-bottom: 10px;
-            font-size: 32px;
-        }
-        .subtitle {
-            color: #64748b;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-        .section {
-            background: white;
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        .section-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-        .grid {
-            display: grid;
-            gap: 16px;
-        }
-        .card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            padding: 16px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .card-title {
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-        .card-value {
-            color: #64748b;
-            font-family: 'Monaco', 'Menlo', monospace;
-            font-size: 13px;
-        }
-        .code {
-            font-family: 'Monaco', 'Menlo', monospace;
-            background: #f1f5f9;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 13px;
-        }
-        .semantic-colors {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 12px;
-        }
-        .semantic-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            background: #f8fafc;
-            border-radius: 6px;
-            border: 1px solid #e2e8f0;
-        }
-        .semantic-item.bg-example {
-            padding: 16px;
-        }
-        .semantic-item.text-example {
-            padding: 16px;
-        }
-        .semantic-item.border-example {
-            padding: 16px;
-        }
-        .semantic-swatch {
-            width: 48px;
-            height: 48px;
-            border-radius: 4px;
-            flex-shrink: 0;
-            border: 1px solid #e2e8f0;
-        }
-        .semantic-info {
-            flex: 1;
-        }
-        .semantic-name {
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 4px;
-            font-size: 13px;
-        }
-        .semantic-value {
-            color: #64748b;
-            font-size: 11px;
-            font-family: 'Monaco', 'Menlo', monospace;
-        }
-        .category-group {
-            margin-bottom: 32px;
-        }
-        .category-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #334155;
-            margin-bottom: 16px;
-            margin-top: 32px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e2e8f0;
-        }
-        .category-title:first-child {
-            margin-top: 0;
-        }
-        .example-text {
-            font-size: 14px;
-            font-weight: 500;
-        }
-        .palette-group {
-            margin-bottom: 32px;
-        }
-        .palette-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #334155;
-            margin-bottom: 12px;
-            margin-top: 24px;
-        }
-        .palette-title:first-child {
-            margin-top: 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 16px;
-        }
-        table th,
-        table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        table th {
-            background: #f8fafc;
-            font-weight: 600;
-            color: #1e293b;
-            font-size: 13px;
-        }
-        table td {
-            color: #334155;
-            font-size: 14px;
-        }
-        .color-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 12px;
-        }
-        .color-item {
-            display: flex;
-            flex-direction: column;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid #e2e8f0;
-            background: white;
-        }
-        .color-swatch {
-            width: 100%;
-            height: 80px;
-        }
-        .color-info {
-            padding: 8px;
-            font-size: 11px;
-        }
-        .color-name {
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 4px;
-        }
-        .color-value {
-            color: #64748b;
-            font-family: 'Monaco', 'Menlo', monospace;
-        }
-    </style>
-    """
 
 
 def get_navigation(current_page: str = "") -> str:
     """네비게이션 HTML 생성 (왼쪽 사이드바)"""
     nav_html = """
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <a href="index.html" class="sidebar-title">RexBox</a>
-            <a href="https://github.com/irang9/rexbox" target="_blank" rel="noopener noreferrer" class="sidebar-github">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
+    <aside class="docs-sidebar">
+        <div class="docs-sidebar-header">
+            <a href="index.html" class="docs-sidebar-title">RexBox</a>
+            <a href="https://github.com/irang9/rexbox" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
+                <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 14px; height: 14px; fill: currentColor; margin-right: 6px; vertical-align: middle;">
                     <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
                 </svg>
                 GitHub
             </a>
         </div>
-        <nav class="sidebar-nav">
-            <ul>
+        <nav class="docs-nav">
+            <ul class="docs-nav-list">
     """
     for item in NAV_ITEMS:
         active = ' class="active"' if item["url"] == current_page else ""
-        nav_html += f'                <li><a href="{item["url"]}"{active}>{item["title"]}</a></li>\n'
+        nav_html += f'                <li><a href="{item["url"]}" class="docs-nav-link"{active}>{item["title"]}</a></li>\n'
     
     nav_html += """
             </ul>
@@ -360,58 +69,10 @@ def get_navigation(current_page: str = "") -> str:
     return nav_html
 
 
-def get_button_styles() -> str:
-    """버튼 CSS 스타일 추출"""
-    css_file = Path(__file__).parent.parent.parent / "sample-project" / "css" / "main.css"
-    if not css_file.exists():
-        return ""
-    
-    with open(css_file, 'r', encoding='utf-8') as f:
-        css_content = f.read()
-    
-    # 버튼 관련 스타일 추출 (더 정확한 파싱)
-    # .btn으로 시작하는 모든 규칙을 추출 (여러 줄 포함, 중첩 중괄호 처리)
-    button_rules = []
-    lines = css_content.split('\n')
-    in_button_rule = False
-    current_rule = []
-    brace_count = 0
-    
-    for line in lines:
-        # .btn으로 시작하는 규칙 찾기
-        if re.match(r'^\s*\.btn', line):
-            if current_rule and brace_count == 0:
-                button_rules.append('\n'.join(current_rule))
-            current_rule = [line]
-            in_button_rule = True
-            brace_count = line.count('{') - line.count('}')
-        elif in_button_rule:
-            current_rule.append(line)
-            brace_count += line.count('{') - line.count('}')
-            if brace_count == 0:
-                button_rules.append('\n'.join(current_rule))
-                current_rule = []
-                in_button_rule = False
-    
-    if current_rule and brace_count == 0:
-        button_rules.append('\n'.join(current_rule))
-    
-    if not button_rules:
-        return ""
-    
-    # 모든 버튼 스타일을 합치기
-    button_css = '\n'.join(button_rules)
-    
-    return f"""
-    <style>
-        /* Button Styles from RexBox */
-        {button_css}
-    </style>
-    """
 
 
 def generate_html_page(title: str, content: str, current_page: str = "") -> str:
-    """HTML 페이지 생성 (공통 헤더/푸터 포함)"""
+    """HTML 페이지 생성 (공통 CSS 사용)"""
     # SVG favicon (data URI)
     favicon_svg = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="%231e293b"/%3E%3Ctext x="50" y="70" font-family="monospace" font-size="60" text-anchor="middle" fill="white"%3ES%3C/text%3E%3C/svg%3E'
     
@@ -423,13 +84,12 @@ def generate_html_page(title: str, content: str, current_page: str = "") -> str:
     <title>{title} - RexBox</title>
     <link rel="icon" type="image/svg+xml" href="{favicon_svg}">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-    {get_common_styles()}
-    {get_button_styles() if current_page == "buttons.html" else ""}
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     {get_navigation(current_page)}
-    <main class="main-content">
-        <div class="container">
+    <main class="docs-main">
+        <div class="docs-container">
             {content}
         </div>
     </main>
@@ -3047,6 +2707,143 @@ def generate_buttons_page() -> str:
 
 
 # ============================================
+# Sample 페이지
+# ============================================
+
+def generate_sample_page() -> str:
+    """Sample 페이지 생성 - 다양한 RexBox 클래스 테스트"""
+    content = """
+        <h1>Sample</h1>
+        <p class="subtitle">RexBox의 다양한 유틸리티 클래스를 테스트해볼 수 있는 페이지입니다.</p>
+        
+        <div class="section">
+            <h2 class="section-title">Buttons</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px;">
+                <button class="btn btn-primary">Primary</button>
+                <button class="btn btn-secondary">Secondary</button>
+                <button class="btn btn-success">Success</button>
+                <button class="btn btn-danger">Danger</button>
+                <button class="btn btn-warning">Warning</button>
+                <button class="btn btn-info">Info</button>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px;">
+                <button class="btn btn-outline btn-outline-primary">Outline Primary</button>
+                <button class="btn btn-outline btn-outline-secondary">Outline Secondary</button>
+                <button class="btn btn-outline btn-outline-success">Outline Success</button>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                <button class="btn btn-primary btn-sm">Small</button>
+                <button class="btn btn-primary">Default</button>
+                <button class="btn btn-primary btn-lg">Large</button>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Colors</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; margin-bottom: 24px;">
+                <div class="bg-primary text-white p-3 rounded">bg-primary</div>
+                <div class="bg-secondary text-white p-3 rounded">bg-secondary</div>
+                <div class="bg-success text-white p-3 rounded">bg-success</div>
+                <div class="bg-danger text-white p-3 rounded">bg-danger</div>
+                <div class="bg-warning text-black-soft p-3 rounded">bg-warning</div>
+                <div class="bg-info text-white p-3 rounded">bg-info</div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px;">
+                <div class="bg-primary-100 p-3 rounded">bg-primary-100</div>
+                <div class="bg-primary-500 text-white p-3 rounded">bg-primary-500</div>
+                <div class="bg-primary-900 text-white p-3 rounded">bg-primary-900</div>
+                <div class="bg-slate-200 p-3 rounded">bg-slate-200</div>
+                <div class="bg-slate-500 text-white p-3 rounded">bg-slate-500</div>
+                <div class="bg-slate-800 text-white p-3 rounded">bg-slate-800</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Typography</h2>
+            <div style="margin-bottom: 24px;">
+                <h1 class="fs-3xl fw-bold">Heading 1 (fs-3xl)</h1>
+                <h2 class="fs-2xl fw-semibold">Heading 2 (fs-2xl)</h2>
+                <h3 class="fs-xl fw-medium">Heading 3 (fs-xl)</h3>
+                <p class="fs-base">Base text (fs-base)</p>
+                <p class="fs-sm text-secondary">Small text (fs-sm)</p>
+                <p class="fs-xs text-secondary">Extra small text (fs-xs)</p>
+            </div>
+            <div>
+                <p class="fw-light">Light weight (fw-light)</p>
+                <p class="fw-normal">Normal weight (fw-normal)</p>
+                <p class="fw-medium">Medium weight (fw-medium)</p>
+                <p class="fw-semibold">Semibold weight (fw-semibold)</p>
+                <p class="fw-bold">Bold weight (fw-bold)</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Borders</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 16px;">
+                <div class="border p-3 rounded">rounded</div>
+                <div class="border p-3 rounded-1">rounded-1</div>
+                <div class="border p-3 rounded-2">rounded-2</div>
+                <div class="border p-3 rounded-3">rounded-3</div>
+                <div class="border p-3 rounded-4">rounded-4</div>
+                <div class="border p-3 rounded-5">rounded-5</div>
+                <div class="border p-3 rounded-6">rounded-6</div>
+                <div class="border p-3 rounded-7">rounded-7</div>
+                <div class="border p-3 rounded-8">rounded-8</div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: 24px;">
+                <div class="border border-primary p-3">border-primary</div>
+                <div class="border border-secondary p-3">border-secondary</div>
+                <div class="border border-success p-3">border-success</div>
+                <div class="border border-danger p-3">border-danger</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Spacing</h2>
+            <div style="margin-bottom: 24px;">
+                <div class="bg-primary-subtle p-1 mb-1">p-1 mb-1</div>
+                <div class="bg-primary-subtle p-2 mb-2">p-2 mb-2</div>
+                <div class="bg-primary-subtle p-3 mb-3">p-3 mb-3</div>
+                <div class="bg-primary-subtle p-4 mb-4">p-4 mb-4</div>
+                <div class="bg-primary-subtle p-5 mb-5">p-5 mb-5</div>
+            </div>
+            <div>
+                <div class="bg-secondary-subtle m-1">m-1</div>
+                <div class="bg-secondary-subtle m-2">m-2</div>
+                <div class="bg-secondary-subtle m-3">m-3</div>
+                <div class="bg-secondary-subtle m-4">m-4</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Stacks</h2>
+            <div class="stack stack-horizontal gap-3 mb-4">
+                <div class="bg-primary text-white p-3 rounded">Item 1</div>
+                <div class="bg-primary text-white p-3 rounded">Item 2</div>
+                <div class="bg-primary text-white p-3 rounded">Item 3</div>
+            </div>
+            <div class="stack stack-vertical gap-2">
+                <div class="bg-secondary text-white p-3 rounded">Item 1</div>
+                <div class="bg-secondary text-white p-3 rounded">Item 2</div>
+                <div class="bg-secondary text-white p-3 rounded">Item 3</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">Width</h2>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="bg-primary-subtle p-2 w-25">w-25</div>
+                <div class="bg-primary-subtle p-2 w-50">w-50</div>
+                <div class="bg-primary-subtle p-2 w-75">w-75</div>
+                <div class="bg-primary-subtle p-2 w-100">w-100</div>
+            </div>
+        </div>
+        """
+    
+    return content
+
+
+# ============================================
 # Index 페이지 (Home)
 # ============================================
 
@@ -3174,6 +2971,12 @@ def main():
     mixins_content = generate_mixins_page()
     with open(DOCS_DIR / "mixins.html", 'w', encoding='utf-8') as f:
         f.write(generate_html_page("Mixins", mixins_content, "mixins.html"))
+    
+    # Sample 페이지
+    print("  - sample.html 생성 중...")
+    sample_content = generate_sample_page()
+    with open(DOCS_DIR / "sample.html", 'w', encoding='utf-8') as f:
+        f.write(generate_html_page("Sample", sample_content, "sample.html"))
     
     print(f"✓ 모든 문서가 {DOCS_DIR} 디렉토리에 생성되었습니다!")
 

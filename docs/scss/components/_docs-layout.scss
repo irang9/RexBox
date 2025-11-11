@@ -1,0 +1,255 @@
+@charset "utf-8";
+
+// ============================================
+// Docs Layout Component
+// ============================================
+// 문서 사이트의 레이아웃 스타일
+// RexBox utilities를 사용합니다.
+// 주의: theme 변수는 main.scss에서 전역으로 사용 가능하도록 설정됨
+
+@use '../config' as config;
+
+.docs-main {
+    flex: 1;
+    margin-left: config.$docs-sidebar-width;
+    min-height: 100vh;
+}
+
+.docs-container {
+    max-width: config.$docs-content-max-width;
+    margin: 0 auto;
+    padding: 32px 40px;
+}
+
+.docs-content {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(33, 33, 33, 0.1);
+}
+
+.docs-section {
+    @extend .docs-content;
+}
+
+.docs-section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #212121;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.docs-subtitle {
+    color: #64748b;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+// 기존 HTML에서 사용하는 클래스명 호환성 유지
+.section {
+    @extend .docs-content;
+}
+
+.section-title {
+    @extend .docs-section-title;
+}
+
+.subtitle {
+    @extend .docs-subtitle;
+}
+
+// 기타 문서 스타일
+.grid {
+    display: grid;
+    gap: 16px;
+}
+
+.card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 16px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(33, 33, 33, 0.1);
+    }
+}
+
+.card-title {
+    font-weight: 600;
+    color: #212121;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.card-value {
+    color: #64748b;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 13px;
+}
+
+.code {
+    font-family: 'Monaco', 'Menlo', monospace;
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.semantic-colors {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+
+.semantic-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    
+    &.bg-example {
+        padding: 16px;
+    }
+    
+    &.text-example {
+        padding: 16px;
+    }
+    
+    &.border-example {
+        padding: 16px;
+    }
+}
+
+.semantic-swatch {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    border: 1px solid #e2e8f0;
+}
+
+.semantic-info {
+    flex: 1;
+}
+
+.semantic-name {
+    font-weight: 600;
+    color: #212121;
+    margin-bottom: 4px;
+    font-size: 13px;
+}
+
+.semantic-value {
+    color: #64748b;
+    font-size: 11px;
+    font-family: 'Monaco', 'Menlo', monospace;
+}
+
+.category-group {
+    margin-bottom: 32px;
+}
+
+.category-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #212121;
+    margin-bottom: 16px;
+    margin-top: 32px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+    
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.example-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.palette-group {
+    margin-bottom: 32px;
+}
+
+.palette-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #212121;
+    margin-bottom: 12px;
+    margin-top: 24px;
+    
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    
+    th,
+    td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    
+    th {
+        background: #f8fafc;
+        font-weight: 600;
+        color: #212121;
+        font-size: 13px;
+    }
+    
+    td {
+        color: #64748b;
+        font-size: 14px;
+    }
+}
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 12px;
+}
+
+.color-item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    background: #ffffff;
+}
+
+.color-swatch {
+    width: 100%;
+    height: 80px;
+}
+
+.color-info {
+    padding: 8px;
+    font-size: 11px;
+}
+
+.color-name {
+    font-weight: 600;
+    color: #212121;
+    margin-bottom: 4px;
+}
+
+.color-value {
+    color: #64748b;
+    font-family: 'Monaco', 'Menlo', monospace;
+}
