@@ -22,7 +22,8 @@ FONTS_VARIABLES_FILE = ROOT_DIR / "fonts" / "_variables.scss"
 # 네비게이션 메뉴
 NAV_ITEMS = [
     {"title": "Home", "url": "index.html"},
-    {"title": "Colors", "url": "colors.html"},
+    {"title": "Theme", "url": "theme.html"},
+    {"title": "Color Palettes", "url": "color-palettes.html"},
     {"title": "Typography", "url": "typography.html"},
     {"title": "Fonts", "url": "fonts.html"},
     {"title": "Breakpoints", "url": "breakpoints.html"},
@@ -41,28 +42,42 @@ NAV_ITEMS = [
 
 
 
-def get_navigation(current_page: str = "") -> str:
+def get_navigation(current_page: str = "", page_title: str = "") -> str:
     """네비게이션 HTML 생성 (왼쪽 사이드바)"""
-    nav_html = """
+    # 현재 페이지 제목 가져오기
+    current_title = page_title if page_title else "RexBox"
+    
+    nav_html = f"""
     <aside class="docs-sidebar">
         <div class="docs-sidebar-header">
-            <a href="index.html" class="docs-sidebar-title">RexBox</a>
-            <a href="https://github.com/irang9/rexbox" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
-                <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 14px; height: 14px; fill: currentColor; margin-right: 6px; vertical-align: middle;">
+            <div class="docs-sidebar-title">{current_title}</div>
+            <a href="https://github.com/irang9/rexbox" target="_blank" rel="noopener noreferrer" class="docs-github-btn" title="GitHub">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
                 </svg>
-                GitHub
             </a>
         </div>
         <nav class="docs-nav">
+            <div class="docs-nav-top">
+                <a href="index.html" class="docs-nav-link{' active' if current_page == 'index.html' else ''}">Home</a>
+            </div>
             <ul class="docs-nav-list">
     """
-    for item in NAV_ITEMS:
-        active = ' class="active"' if item["url"] == current_page else ""
-        nav_html += f'                <li><a href="{item["url"]}" class="docs-nav-link"{active}>{item["title"]}</a></li>\n'
+    # Home과 Sample 제외한 항목들
+    for item in NAV_ITEMS[1:-1]:  # Home과 Sample 제외
+        active = ' active' if item["url"] == current_page else ""
+        nav_html += f'                <li><a href="{item["url"]}" class="docs-nav-link{active}">{item["title"]}</a></li>\n'
     
     nav_html += """
             </ul>
+            <div class="docs-nav-bottom">
+                <a href="sample.html" class="docs-nav-link"""
+    
+    if current_page == "sample.html":
+        nav_html += ' active'
+    
+    nav_html += """">Sample</a>
+            </div>
         </nav>
     </aside>
     """
@@ -87,7 +102,7 @@ def generate_html_page(title: str, content: str, current_page: str = "") -> str:
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    {get_navigation(current_page)}
+    {get_navigation(current_page, title)}
     <main class="docs-main">
         <div class="docs-container">
             {content}
@@ -189,46 +204,10 @@ def get_category_order_from_file(color_vars: Dict[str, str]) -> Dict[str, int]:
 
 
 def generate_colors_page() -> str:
-    """Colors 페이지 생성"""
+    """Theme 페이지 생성 (Semantic Colors)"""
     # 색상 변수 추출
     color_vars = extract_color_variables(VARIABLES_COLORS_FILE)
     theme_mappings = extract_theme_mappings(THEME_FILE, color_vars)
-    
-    # 카테고리 순서 가져오기
-    category_order_map = get_category_order_from_file(color_vars)
-    
-    # 색상 카테고리별로 분류
-    categories = {
-        'Global': [],
-        'Slate': [], 'Gray': [], 'Zinc': [], 'Neutral': [], 'Stone': [],
-        'Lime': [], 'Green': [], 'Emerald': [], 'Teal': [], 'Cyan': [],
-        'Sky': [], 'Blue': [], 'Indigo': [], 'Violet': [], 'Purple': [],
-        'Fuchsia': [], 'Pink': [], 'Rose': [], 'Red': [], 'Orange': [],
-        'Amber': [], 'Yellow': [],
-    }
-    
-    # 색상 변수 분류
-    for var_name, color_value in sorted(color_vars.items()):
-        category = None
-        for cat in categories.keys():
-            if var_name.startswith(cat.lower()):
-                category = cat
-                break
-        
-        if not category:
-            if var_name in ['white', 'white-real', 'black', 'black-real']:
-                category = 'Global'
-            else:
-                parts = var_name.split('-')
-                if len(parts) > 1:
-                    potential_cat = parts[0].capitalize()
-                    if potential_cat in categories:
-                        category = potential_cat
-        
-        if category:
-            categories[category].append((var_name, color_value))
-        else:
-            categories['Global'].append((var_name, color_value))
     
     # Theme 색상 분류
     bg_colors = []
@@ -259,8 +238,8 @@ def generate_colors_page() -> str:
     
     # HTML 생성
     content = """
-        <h1>Colors</h1>
-        <p class="subtitle">RexBox의 theme과 variables 색상 팔레트</p>
+        <h1>Theme</h1>
+        <p class="subtitle">RexBox의 semantic 색상 테마 (프로젝트별 오버라이드 가능)</p>
         
         <!-- Semantic Colors (Theme) -->
         <div class="section">
@@ -627,11 +606,58 @@ def generate_colors_page() -> str:
         </div>
         """
     
-    # Color Palettes (원시 색상 팔레트 - 가장 하단으로 이동)
-    content += """
+    return content
+
+
+def generate_color_palettes_page() -> str:
+    """Color Palettes 페이지 생성 (원시 색상 팔레트)"""
+    # 색상 변수 추출
+    color_vars = extract_color_variables(VARIABLES_COLORS_FILE)
+    
+    # 카테고리 순서 가져오기
+    category_order_map = get_category_order_from_file(color_vars)
+    
+    # 색상 카테고리별로 분류
+    categories = {
+        'Global': [],
+        'Slate': [], 'Gray': [], 'Zinc': [], 'Neutral': [], 'Stone': [],
+        'Lime': [], 'Green': [], 'Emerald': [], 'Teal': [], 'Cyan': [],
+        'Sky': [], 'Blue': [], 'Indigo': [], 'Violet': [], 'Purple': [],
+        'Fuchsia': [], 'Pink': [], 'Rose': [], 'Red': [], 'Orange': [],
+        'Amber': [], 'Yellow': [],
+    }
+    
+    # 색상 변수 분류
+    for var_name, color_value in sorted(color_vars.items()):
+        category = None
+        for cat in categories.keys():
+            if var_name.startswith(cat.lower()):
+                category = cat
+                break
+        
+        if not category:
+            if var_name in ['white', 'white-soft', 'black', 'black-soft']:
+                category = 'Global'
+            else:
+                parts = var_name.split('-')
+                if len(parts) > 1:
+                    potential_cat = parts[0].capitalize()
+                    if potential_cat in categories:
+                        category = potential_cat
+        
+        if category:
+            categories[category].append((var_name, color_value))
+        else:
+            categories['Global'].append((var_name, color_value))
+    
+    # HTML 생성
+    content = """
+        <h1>Color Palettes</h1>
+        <p class="subtitle">RexBox에서 사용 가능한 모든 원시 색상 팔레트입니다. 일반적으로는 Theme 색상을 사용하는 것을 권장합니다.</p>
+        
         <div class="section">
             <h2 class="section-title">Color Palettes</h2>
-            <p style="margin-bottom: 16px; color: #64748b;">RexBox에서 사용 가능한 모든 원시 색상 팔레트입니다. 일반적으로는 Semantic Colors나 Color Scale을 사용하는 것을 권장합니다.</p>
+            <p style="margin-bottom: 16px; color: #64748b;">원시 색상 변수는 프로젝트에서 직접 사용하거나 Theme 색상을 오버라이드할 때 사용할 수 있습니다.</p>
     """
     
     def get_category_sort_key(item):
@@ -2960,11 +2986,17 @@ def main():
     with open(DOCS_DIR / "fonts.html", 'w', encoding='utf-8') as f:
         f.write(generate_html_page("Fonts", fonts_content, "fonts.html"))
     
-    # Colors 페이지 (기존 코드 활용 필요)
-    print("  - colors.html 생성 중...")
-    colors_content = generate_colors_page()
-    with open(DOCS_DIR / "colors.html", 'w', encoding='utf-8') as f:
-        f.write(generate_html_page("Colors", colors_content, "colors.html"))
+    # Theme 페이지 (기존 Colors 페이지)
+    print("  - theme.html 생성 중...")
+    theme_content = generate_colors_page()
+    with open(DOCS_DIR / "theme.html", 'w', encoding='utf-8') as f:
+        f.write(generate_html_page("Theme", theme_content, "theme.html"))
+    
+    # Color Palettes 페이지
+    print("  - color-palettes.html 생성 중...")
+    color_palettes_content = generate_color_palettes_page()
+    with open(DOCS_DIR / "color-palettes.html", 'w', encoding='utf-8') as f:
+        f.write(generate_html_page("Color Palettes", color_palettes_content, "color-palettes.html"))
     
     # Mixins 페이지
     print("  - mixins.html 생성 중...")

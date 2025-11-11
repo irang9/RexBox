@@ -25,29 +25,71 @@
 .docs-sidebar-header {
     padding: 24px 20px;
     border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .docs-sidebar-title {
     font-size: 20px;
     font-weight: 700;
     color: #212121;
+    margin: 0;
+    flex: 1;
+}
+
+.docs-github-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    color: #64748b;
     text-decoration: none;
-    display: block;
-    margin-bottom: 8px;
+    transition: all 0.2s;
+    
+    svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+    }
     
     &:hover {
+        background: #f8fafc;
+        border-color: #2563eb;
         color: #2563eb;
     }
 }
 
 .docs-nav {
     padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 100px);
+}
+
+.docs-nav-top {
+    padding: 0 20px 12px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 12px;
+}
+
+.docs-nav-bottom {
+    padding: 12px 20px 0 20px;
+    border-top: 1px solid #e2e8f0;
+    margin-top: auto;
 }
 
 .docs-nav-list {
     list-style: none;
     margin: 0;
     padding: 0;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .docs-nav-link {

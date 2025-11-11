@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme - RexBox</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Crect width="100" height="100" fill="%231e293b"/%3E%3Ctext x="50" y="70" font-family="monospace" font-size="60" text-anchor="middle" fill="white"%3ES%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    
+    <aside class="docs-sidebar">
+        <div class="docs-sidebar-header">
+            <div class="docs-sidebar-title">Theme</div>
+            <a href="https://github.com/irang9/rexbox" target="_blank" rel="noopener noreferrer" class="docs-github-btn" title="GitHub">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                </svg>
+            </a>
+        </div>
+        <nav class="docs-nav">
+            <div class="docs-nav-top">
+                <a href="index.html" class="docs-nav-link">Home</a>
+            </div>
+            <ul class="docs-nav-list">
+                    <li><a href="theme.html" class="docs-nav-link active">Theme</a></li>
+                <li><a href="color-palettes.html" class="docs-nav-link">Color Palettes</a></li>
+                <li><a href="typography.html" class="docs-nav-link">Typography</a></li>
+                <li><a href="fonts.html" class="docs-nav-link">Fonts</a></li>
+                <li><a href="breakpoints.html" class="docs-nav-link">Breakpoints</a></li>
+                <li><a href="spacing.html" class="docs-nav-link">Spacing</a></li>
+                <li><a href="width.html" class="docs-nav-link">Width</a></li>
+                <li><a href="container.html" class="docs-nav-link">Container</a></li>
+                <li><a href="borders.html" class="docs-nav-link">Borders</a></li>
+                <li><a href="buttons.html" class="docs-nav-link">Buttons</a></li>
+                <li><a href="stacks.html" class="docs-nav-link">Stacks</a></li>
+                <li><a href="responsive.html" class="docs-nav-link">Responsive</a></li>
+                <li><a href="vertical-rule.html" class="docs-nav-link">Vertical Rule</a></li>
+                <li><a href="mixins.html" class="docs-nav-link">Mixins</a></li>
+
+            </ul>
+            <div class="docs-nav-bottom">
+                <a href="sample.html" class="docs-nav-link">Sample</a>
+            </div>
+        </nav>
+    </aside>
+    
+    <main class="docs-main">
+        <div class="docs-container">
+            
+        <h1>Theme</h1>
+        <p class="subtitle">RexBox의 semantic 색상 테마 (프로젝트별 오버라이드 가능)</p>
+        
+        <!-- Semantic Colors (Theme) -->
+        <div class="section">
+            <h2 class="section-title">Semantic Colors (Theme)</h2>
+    
+            <div class="category-group">
+                <div class="category-title">Background Colors</div>
+                <div class="semantic-colors">
+        
+                    <div class="semantic-item bg-example" style="background: #F8FAFC; ">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$bg-light</div>
+                            <div class="semantic-value">#F8FAFC</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">background-color: $bg-light;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item bg-example" style="background: #F1F5F9; ">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$bg-subtle</div>
+                            <div class="semantic-value">#F1F5F9</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">background-color: $bg-subtle;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item bg-example" style="background: #FCFCFC; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$bg-default</div>
+                            <div class="semantic-value">#FCFCFC</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">background-color: $bg-default;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item bg-example" style="background: #FFFFFF; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$bg-white</div>
+                            <div class="semantic-value">#FFFFFF</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">background-color: $bg-white;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item bg-example" style="background: #111827; ">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$bg-dark</div>
+                            <div class="semantic-value">#111827</div>
+                            <div class="example-text" style="margin-top: 8px; color: #ffffff;">background-color: $bg-dark;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item bg-example" style="background: #2563EB; ">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$bg-primary</div>
+                            <div class="semantic-value">#2563EB</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">background-color: $bg-primary;</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: 100, 200, 300, 400, 500, 600, 700, 800, 900</div>
+                        </div>
+                    </div>
+                
+                    <div class="semantic-item bg-example" style="background: #06B6D4; ">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$bg-secondary</div>
+                            <div class="semantic-value">#06B6D4</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">background-color: $bg-secondary;</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: 100, 200, 300, 400, 500, 600, 700, 800, 900</div>
+                        </div>
+                    </div>
+                
+                    <div class="semantic-item bg-example" style="background: #22C55E; ">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$bg-point</div>
+                            <div class="semantic-value">#22C55E</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">background-color: $bg-point;</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: 100, 200, 300, 400, 500, 600, 700, 800, 900</div>
+                        </div>
+                    </div>
+                
+                    <div class="semantic-item bg-example" style="background: #64748B; ">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$bg-slate</div>
+                            <div class="semantic-value">#64748B</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">background-color: $bg-slate;</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950</div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        
+            <div class="category-group">
+                <div class="category-title">Text Colors</div>
+                <div class="semantic-colors">
+        
+                    <div class="semantic-item text-example" style="background: #ffffff; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$text-primary</div>
+                            <div class="semantic-value">#212121</div>
+                            <div class="example-text" style="margin-top: 8px; color: #212121;">color: $text-primary;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item text-example" style="background: #ffffff; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$text-secondary</div>
+                            <div class="semantic-value">#475569</div>
+                            <div class="example-text" style="margin-top: 8px; color: #475569;">color: $text-secondary;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item text-example" style="background: #ffffff; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$text-tertiary</div>
+                            <div class="semantic-value">#94A3B8</div>
+                            <div class="example-text" style="margin-top: 8px; color: #94A3B8;">color: $text-tertiary;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item text-example" style="background: #ffffff; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$text-disabled</div>
+                            <div class="semantic-value">#CBD5E1</div>
+                            <div class="example-text" style="margin-top: 8px; color: #CBD5E1;">color: $text-disabled;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item text-example" style="background: #111827; ">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$text-inverse</div>
+                            <div class="semantic-value">#FCFCFC</div>
+                            <div class="example-text" style="margin-top: 8px; color: #FCFCFC;">color: $text-inverse;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item text-example" style="background: #ffffff; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$text-primary</div>
+                            <div class="semantic-value">#2563EB</div>
+                            <div class="example-text" style="margin-top: 8px; color: #2563EB;">color: $text-primary;</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: 100, 200, 300, 400, 500, 600, 700, 800, 900</div>
+                        </div>
+                    </div>
+                
+                    <div class="semantic-item text-example" style="background: #ffffff; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$text-secondary</div>
+                            <div class="semantic-value">#06B6D4</div>
+                            <div class="example-text" style="margin-top: 8px; color: #06B6D4;">color: $text-secondary;</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: 100, 200, 300, 400, 500, 600, 700, 800, 900</div>
+                        </div>
+                    </div>
+                
+                    <div class="semantic-item text-example" style="background: #ffffff; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$text-point</div>
+                            <div class="semantic-value">#22C55E</div>
+                            <div class="example-text" style="margin-top: 8px; color: #22C55E;">color: $text-point;</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: 100, 200, 300, 400, 500, 600, 700, 800, 900</div>
+                        </div>
+                    </div>
+                
+                    <div class="semantic-item text-example" style="background: #ffffff; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$text-slate</div>
+                            <div class="semantic-value">#64748B</div>
+                            <div class="example-text" style="margin-top: 8px; color: #64748B;">color: $text-slate;</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950</div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        
+            <div class="category-group">
+                <div class="category-title">Border Colors</div>
+                <div class="semantic-colors">
+        
+                    <div class="semantic-item border-example" style="background: #ffffff; border: 2px solid #E2E8F0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$border-light</div>
+                            <div class="semantic-value">#E2E8F0</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">border: 1px solid $border-light;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item border-example" style="background: #ffffff; border: 2px solid #CBD5E1;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$border-default</div>
+                            <div class="semantic-value">#CBD5E1</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">border: 1px solid $border-default;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item border-example" style="background: #ffffff; border: 2px solid #64748B;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$border-dark</div>
+                            <div class="semantic-value">#64748B</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">border: 1px solid $border-dark;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item border-example" style="background: #ffffff; border: 2px solid #2563EB;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$border-primary</div>
+                            <div class="semantic-value">#2563EB</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">border: 1px solid $border-primary;</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: 100, 200, 300, 400, 500, 600, 700, 800, 900</div>
+                        </div>
+                    </div>
+                
+                    <div class="semantic-item border-example" style="background: #ffffff; border: 2px solid #06B6D4;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$border-secondary</div>
+                            <div class="semantic-value">#06B6D4</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">border: 1px solid $border-secondary;</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: 100, 200, 300, 400, 500, 600, 700, 800, 900</div>
+                        </div>
+                    </div>
+                
+                    <div class="semantic-item border-example" style="background: #ffffff; border: 2px solid #22C55E;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$border-point</div>
+                            <div class="semantic-value">#22C55E</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">border: 1px solid $border-point;</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: 100, 200, 300, 400, 500, 600, 700, 800, 900</div>
+                        </div>
+                    </div>
+                
+                    <div class="semantic-item border-example" style="background: #ffffff; border: 2px solid #64748B;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$border-slate</div>
+                            <div class="semantic-value">#64748B</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">border: 1px solid $border-slate;</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950</div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        
+            <div class="category-group">
+                <div class="category-title">Brand Colors</div>
+                <div class="semantic-colors">
+        
+                    <div class="semantic-item">
+                        <div class="semantic-swatch" style="background: #2563EB;"></div>
+                        <div class="semantic-info">
+                            <div class="semantic-name">$primary</div>
+                            <div class="semantic-value">#2563EB</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item">
+                        <div class="semantic-swatch" style="background: #22C55E;"></div>
+                        <div class="semantic-info">
+                            <div class="semantic-name">$point</div>
+                            <div class="semantic-value">#22C55E</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item">
+                        <div class="semantic-swatch" style="background: #06B6D4;"></div>
+                        <div class="semantic-info">
+                            <div class="semantic-name">$secondary</div>
+                            <div class="semantic-value">#06B6D4</div>
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
+        
+            <div class="category-group">
+                <div class="category-title">State Colors</div>
+                <div class="semantic-colors">
+        
+                    <div class="semantic-item">
+                        <div class="semantic-swatch" style="background: #22C55E;"></div>
+                        <div class="semantic-info">
+                            <div class="semantic-name">$success</div>
+                            <div class="semantic-value">#22C55E</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item">
+                        <div class="semantic-swatch" style="background: #EAB308;"></div>
+                        <div class="semantic-info">
+                            <div class="semantic-name">$warning</div>
+                            <div class="semantic-value">#EAB308</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item">
+                        <div class="semantic-swatch" style="background: #EF4444;"></div>
+                        <div class="semantic-info">
+                            <div class="semantic-name">$danger</div>
+                            <div class="semantic-value">#EF4444</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item">
+                        <div class="semantic-swatch" style="background: #3B82F6;"></div>
+                        <div class="semantic-info">
+                            <div class="semantic-name">$info</div>
+                            <div class="semantic-value">#3B82F6</div>
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
+        
+            <div class="category-group">
+                <div class="category-title">Stock/Finance State Colors</div>
+                <div class="semantic-colors">
+        
+                    <div class="semantic-item">
+                        <div class="semantic-swatch" style="background: #EF4444;"></div>
+                        <div class="semantic-info">
+                            <div class="semantic-name">$positive</div>
+                            <div class="semantic-value">#EF4444</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item">
+                        <div class="semantic-swatch" style="background: #2563EB;"></div>
+                        <div class="semantic-info">
+                            <div class="semantic-name">$negative</div>
+                            <div class="semantic-value">#2563EB</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item">
+                        <div class="semantic-swatch" style="background: #6B7280;"></div>
+                        <div class="semantic-info">
+                            <div class="semantic-name">$neutral</div>
+                            <div class="semantic-value">#6B7280</div>
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
+        
+            <div class="category-group">
+                <div class="category-title">Link Colors</div>
+                <div class="semantic-colors">
+        
+                    <div class="semantic-item text-example" style="background: #ffffff; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$link</div>
+                            <div class="semantic-value">#2563EB</div>
+                            <div class="example-text" style="margin-top: 8px; color: #2563EB; text-decoration: underline;">color: $link;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item text-example" style="background: #ffffff; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$link-hover</div>
+                            <div class="semantic-value">#1D4ED8</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1D4ED8; text-decoration: underline;">color: $link-hover;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item text-example" style="background: #ffffff; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$link-visited</div>
+                            <div class="semantic-value">#9333EA</div>
+                            <div class="example-text" style="margin-top: 8px; color: #9333EA; text-decoration: underline;">color: $link-visited;</div>
+                        </div>
+                    </div>
+            
+                    <div class="semantic-item text-example" style="background: #ffffff; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$link-point</div>
+                            <div class="semantic-value">#3B82F6</div>
+                            <div class="example-text" style="margin-top: 8px; color: #3B82F6; text-decoration: underline;">color: $link-point;</div>
+                        </div>
+                    </div>
+            
+                </div>
+            </div>
+        
+        </div>
+    
+        <div class="section">
+            <h2 class="section-title">Utility Classes</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">semantic 색상과 연계된 유틸리티 클래스를 사용하면 SCSS 수정 없이도 신속하게 색상을 지정할 수 있습니다.</p>
+            <div style="display: grid; gap: 16px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>클래스</th>
+                            <th>역할</th>
+                            <th>예시</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code class="code">.text-primary</code></td><td>글자 색상 변경</td><td><span class="text-primary" style="font-weight:600;">Sample</span></td></tr>
+                        <tr><td><code class="code">.bg-primary</code></td><td>배경색 지정 (자동 대비 텍스트)</td><td><span class="text-bg-primary">Primary</span></td></tr>
+                        <tr><td><code class="code">.bg-primary-subtle</code></td><td>옅은 배경 + 강조 텍스트</td><td><span class="bg-primary-subtle" style="display:inline-flex; align-items:center; padding:4px 8px; border-radius:6px;">Subtle</span></td></tr>
+                        <tr><td><code class="code">.text-bg-success</code></td><td>텍스트/배경 패키지</td><td><span class="text-bg-success">Success</span></td></tr>
+                    </tbody>
+                </table>
+
+                <pre style="background: #1e293b; color: #f8fafc; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 13px; line-height: 1.6; margin: 0;"><code>&lt;button class="text-bg-primary border-0"&gt;
+  Primary Action
+&lt;/button&gt;
+
+&lt;p class="bg-warning-subtle p-3 rounded"&gt;
+  &lt;span class="text-warning"&gt;주의:&lt;/span&gt; 안내 문구.
+&lt;/p&gt;
+
+&lt;span class="text-primary"&gt;링크 및 포인트 컬러&lt;/span&gt;
+&lt;span class="text-muted"&gt;보조 텍스트&lt;/span&gt;</code></pre>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">색상 유틸리티 사용 방법</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">RexBox는 두 가지 방식으로 색상 유틸리티를 사용할 수 있습니다:</p>
+            
+            <div style="margin-bottom: 24px; padding: 20px; background: #eff6ff; border-radius: 8px; border: 1px solid #bfdbfe;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e40af;">📌 언제 무엇을 사용해야 할까요?</h3>
+                <div style="display: grid; gap: 12px; font-size: 14px; color: #1e40af;">
+                    <div>
+                        <strong style="color: #1e3a8a;">Semantic Names 사용 권장:</strong>
+                        <ul style="margin: 8px 0 0 20px; color: #1e40af;">
+                            <li>일반적인 UI 컴포넌트 (버튼, 카드, 배너 등)</li>
+                            <li>프로젝트 전체에서 일관된 색상이 필요한 경우</li>
+                            <li>테마 변경 시 쉽게 유지보수하고 싶은 경우</li>
+                            <li>예: <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-primary</code>, <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-primary-subtle</code></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong style="color: #1e3a8a;">Step Values 사용 권장:</strong>
+                        <ul style="margin: 8px 0 0 20px; color: #1e40af;">
+                            <li>세밀한 색상 조정이 필요한 경우</li>
+                            <li>특정 디자인 요구사항에 맞춰 정확한 색상값이 필요한 경우</li>
+                            <li>그라데이션이나 복잡한 색상 조합이 필요한 경우</li>
+                            <li>예: <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-primary-200</code>, <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-slate-300</code></li>
+                        </ul>
+                </div>
+                    <div style="margin-top: 8px; padding: 12px; background: #fff; border-radius: 6px; border: 1px solid #bfdbfe;">
+                        <strong style="color: #dc2626;">⚠️ 주의:</strong>
+                        <p style="margin: 8px 0 0 0; color: #991b1b; font-size: 13px;">
+                            <code class="code">.bg-primary</code>와 <code class="code">.bg-primary-500</code>는 같은 색상을 사용할 수 있습니다. 
+                            일반적으로는 <code class="code">.bg-primary</code>를 사용하고, 세밀한 조정이 필요할 때만 Step Values를 사용하세요.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: grid; gap: 24px;">
+                <div style="padding: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">1. Semantic Names (의미 기반 색상)</h3>
+                    <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">의미 있는 색상 이름을 사용합니다. 프로젝트별로 색상 값을 오버라이드할 수 있어 유지보수가 용이합니다.</p>
+                    <div style="display: grid; gap: 8px; margin-bottom: 12px;">
+                        <code class="code">.bg-primary</code> - Primary 배경색
+                        <code class="code">.text-primary</code> - Primary 텍스트 색상
+                        <code class="code">.border-primary</code> - Primary 테두리 색상
+                        <code class="code">.bg-primary-light</code> - 옅은 Primary 배경색
+                        <code class="code">.bg-primary-subtle</code> - 미묘한 Primary 배경색
+                    </div>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px; line-height: 1.6; margin: 0;"><code>&lt;div class="bg-primary text-white"&gt;Primary 배경&lt;/div&gt;
+&lt;span class="text-primary"&gt;Primary 텍스트&lt;/span&gt;
+&lt;div class="border border-primary"&gt;Primary 테두리&lt;/div&gt;</code></pre>
+                </div>
+                
+                <div style="padding: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                    <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">2. Step Values (스텝별 색상값)</h3>
+                    <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">주요 색상(Slate, Primary, Secondary, Point)에 한해 스텝별 색상값을 직접 사용할 수 있습니다. 더 세밀한 색상 조정이 가능합니다.</p>
+                    <div style="display: grid; gap: 8px; margin-bottom: 12px;">
+                        <code class="code">.bg-slate-200</code> - Slate 200 배경색
+                        <code class="code">.text-primary-600</code> - Primary 600 텍스트 색상
+                        <code class="code">.border-secondary-300</code> - Secondary 300 테두리 색상
+                        <code class="code">.bg-point-100</code> - Point 100 배경색
+                    </div>
+                    <div style="margin-bottom: 12px; padding: 12px; background: #fff7ed; border-radius: 6px; border: 1px solid #fed7aa;">
+                        <p style="margin: 0; color: #92400e; font-size: 13px;"><strong>사용 가능한 색상:</strong></p>
+                        <ul style="margin: 8px 0 0 0; padding-left: 20px; color: #92400e; font-size: 13px;">
+                            <li><strong>Slate:</strong> 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950</li>
+                            <li><strong>Primary:</strong> 100, 200, 300, 400, 500, 600, 700, 800, 900</li>
+                            <li><strong>Secondary:</strong> 100, 200, 300, 400, 500, 600, 700, 800, 900</li>
+                            <li><strong>Point:</strong> 100, 200, 300, 400, 500, 600, 700, 800, 900</li>
+                        </ul>
+                    </div>
+                    <pre style="background: #1e293b; color: #f8fafc; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px; line-height: 1.6; margin: 0;"><code>&lt;div class="bg-slate-100 text-slate-800"&gt;Slate 색상&lt;/div&gt;
+&lt;span class="text-primary-600"&gt;Primary 600 텍스트&lt;/span&gt;
+&lt;div class="border border-secondary-300"&gt;Secondary 300 테두리&lt;/div&gt;
+&lt;button class="btn bg-primary-200 border-primary-500"&gt;옅은 Primary 버튼&lt;/button&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+    </main>
+</body>
+</html>
