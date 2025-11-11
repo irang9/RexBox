@@ -16,7 +16,7 @@
 //
 // 예시:
 // background-color: $bg-light;     // $yellow-200 사용
-// color: $text-primary;            // $gray-900 사용
+// color: $text-primary;            // $black-soft 사용
 
 // ============================================
 // Background Colors
@@ -25,7 +25,7 @@ $bg-light: $slate-50; // 밝은 배경
 $bg-subtle: $slate-100; // 미묘한 배경
 $bg-default: $white-soft; // 기본 배경 (조정된 흰색)
 $bg-white: $white; // 순수 흰색 배경
-$bg-dark: $gray-900; // 어두운 배경
+$bg-dark: $slate-900; // 어두운 배경
 
 // ============================================
 // Text Colors
@@ -90,6 +90,11 @@ $point-700: $green-700 !default;
 $point-800: $green-800 !default;
 $point-900: $green-900 !default;
 
+// Slate 색상 (Semantic)
+// 무채색(neutral) 용도로 사용되는 기본 색상
+// slate-500를 기본값으로 하며, 프로젝트별로 오버라이드 가능
+$slate: $slate-500 !default;
+
 // ============================================
 // State Colors
 // ============================================
@@ -102,7 +107,7 @@ $info: $blue-500;
 // 주의: 프로젝트별로 다른 색상을 사용할 수 있으므로 오버라이드 가능
 $positive: $red-500; // 상승/긍정 (기본값: #ff4848)
 $negative: $blue-600; // 하락/부정 (기본값: #3c4e9b)
-$neutral: $gray-500; // 중립 (기본값: #6C7285)
+$neutral: $slate-500; // 중립 (기본값: #64748b)
 
 // Stock aliases
 $stock-neutral: $neutral;
@@ -120,5 +125,5 @@ $link-point: $blue-500; // 링크 포인트 색상 (기본값: #4262f7)
 
 // UI Element Colors
 $pager-active: $blue-600; // 페이지네이션 활성 색상 (기본값: #6f83ce)
-$button-dark: $gray-800; // 기본값: #3d4451
-$button-dark-hover: $gray-900; // 기본값: #292e38
+$button-dark: $slate-800; // 기본값: #1e293b
+$button-dark-hover: $slate-900; // 기본값: #0f172a

@@ -82,6 +82,7 @@ $btn-variants: (
     "danger": $danger,
     "info": $info,
     "point": $point,
+    "slate": $slate,
 );
 
 @each $name, $color in $btn-variants {

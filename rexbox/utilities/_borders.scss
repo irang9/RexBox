@@ -103,6 +103,10 @@ $border-color: $border-default; // theme에서 정의된 기본 border 색상
     border-color: $info !important;
 }
 
+.border-slate {
+    border-color: $slate !important;
+}
+
 .border-light {
     border-color: $border-light !important;
 }
