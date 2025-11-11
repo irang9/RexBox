@@ -718,71 +718,125 @@ def generate_colors_page() -> str:
         </div>
     """
     
+    # Stepped Color Scale (스텝별 스케일 사용이 가능한 색상 목록)
+    content += """
+        <div class="section">
+            <h2 class="section-title">Stepped Color Scale</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">다음 색상들은 스텝별(스케일) 색상값으로 유틸리티 클래스에서 직접 사용할 수 있습니다. <code class="code">.bg-slate-200</code>, <code class="code">.text-primary-600</code> 등의 형태로 사용합니다.</p>
+    """
+    
+    # Slate Color Scale
+    slate_steps = ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "950"]
+    slate_colors = []
+    for step in slate_steps:
+        var_name = f"slate-{step}"
+        if var_name in color_vars:
+            slate_colors.append((var_name, color_vars[var_name]))
+    
+    if slate_colors:
+        content += """
+            <div class="palette-group">
+                <div class="palette-title">Slate</div>
+                <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">사용 가능한 단계: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950</p>
+                <div class="color-grid">
+        """
+        for var_name, color_value in slate_colors:
+            border_style = 'border: 1px solid #e2e8f0;' if color_value.upper() in ['#F8FAFC', '#FFFFFF'] else ''
+            content += f"""
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: {color_value}; {border_style}"></div>
+                        <div class="color-info">
+                            <div class="color-name">${var_name}</div>
+                            <div class="color-value">{color_value}</div>
+                        </div>
+                    </div>
+            """
+        content += """
+                </div>
+            </div>
+        """
+    
     # Primary Color Scale
-    primary_mappings = {name: (base_var, color) for name, (base_var, color) in theme_mappings.items() if name.startswith('primary-') or name == 'primary'}
+    primary_steps = ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
     primary_colors = []
-    
-    if 'primary' in primary_mappings:
-        _, color = primary_mappings['primary']
-        primary_colors.append(('primary', color))
-    
-    if 'primary-50' in primary_mappings:
-        _, color = primary_mappings['primary-50']
-        primary_colors.append(('primary-50', color))
-    
-    for num in range(100, 1000, 100):
-        name = f'primary-{num}'
-        if name in primary_mappings:
-            _, color = primary_mappings[name]
-            primary_colors.append((name, color))
+    for step in primary_steps:
+        var_name = f"primary-{step}"
+        if var_name in theme_mappings:
+            _, color = theme_mappings[var_name]
+            primary_colors.append((var_name, color))
     
     if primary_colors:
         content += """
-        <div class="section">
-            <h2 class="section-title">Primary Color Scale</h2>
-            <div class="color-grid">
-        """
-        for name, color_value in primary_colors:
-            content += f"""
-                <div class="color-item">
-                    <div class="color-swatch" style="background: {color_value};"></div>
-                    <div class="color-info">
-                        <div class="color-name">${name}</div>
-                        <div class="color-value">{color_value}</div>
-                    </div>
-                </div>
-            """
-        content += """
-            </div>
-        </div>
-        """
-    
-    # Color Palettes
-    content += """
-        <div class="section">
-            <h2 class="section-title">Color Palettes</h2>
-    """
-    
-    def get_category_sort_key(item):
-        category, color_list = item
-        if category == 'Global':
-            return (-1, category)
-        order = category_order_map.get(category, 999)
-        return (order, category)
-    
-    sorted_categories = sorted(categories.items(), key=get_category_sort_key)
-    
-    for category, color_list in sorted_categories:
-        if not color_list:
-            continue
-        
-        content += f"""
             <div class="palette-group">
-                <div class="palette-title">{category}</div>
+                <div class="palette-title">Primary</div>
+                <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">사용 가능한 단계: 100, 200, 300, 400, 500, 600, 700, 800, 900</p>
                 <div class="color-grid">
         """
-        sorted_color_list = sort_color_by_brightness(color_list)
-        for var_name, color_value in sorted_color_list:
+        for var_name, color_value in primary_colors:
+            border_style = 'border: 1px solid #e2e8f0;' if color_value.upper() in ['#FCFCFC', '#FFFFFF'] else ''
+            content += f"""
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: {color_value}; {border_style}"></div>
+                        <div class="color-info">
+                            <div class="color-name">${var_name}</div>
+                            <div class="color-value">{color_value}</div>
+                        </div>
+                    </div>
+            """
+        content += """
+                </div>
+            </div>
+        """
+    
+    # Secondary Color Scale
+    secondary_steps = ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
+    secondary_colors = []
+    for step in secondary_steps:
+        var_name = f"secondary-{step}"
+        if var_name in theme_mappings:
+            _, color = theme_mappings[var_name]
+            secondary_colors.append((var_name, color))
+    
+    if secondary_colors:
+        content += """
+            <div class="palette-group">
+                <div class="palette-title">Secondary</div>
+                <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">사용 가능한 단계: 100, 200, 300, 400, 500, 600, 700, 800, 900</p>
+                <div class="color-grid">
+        """
+        for var_name, color_value in secondary_colors:
+            border_style = 'border: 1px solid #e2e8f0;' if color_value.upper() in ['#FCFCFC', '#FFFFFF'] else ''
+            content += f"""
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: {color_value}; {border_style}"></div>
+                        <div class="color-info">
+                            <div class="color-name">${var_name}</div>
+                            <div class="color-value">{color_value}</div>
+                        </div>
+                    </div>
+            """
+        content += """
+                </div>
+            </div>
+        """
+    
+    # Point Color Scale
+    point_steps = ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
+    point_colors = []
+    for step in point_steps:
+        var_name = f"point-{step}"
+        if var_name in theme_mappings:
+            _, color = theme_mappings[var_name]
+            point_colors.append((var_name, color))
+    
+    if point_colors:
+        content += """
+            <div class="palette-group">
+                <div class="palette-title">Point</div>
+                <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">사용 가능한 단계: 100, 200, 300, 400, 500, 600, 700, 800, 900</p>
+                <div class="color-grid">
+        """
+        for var_name, color_value in point_colors:
             border_style = 'border: 1px solid #e2e8f0;' if color_value.upper() in ['#FCFCFC', '#FFFFFF'] else ''
             content += f"""
                     <div class="color-item">
@@ -880,6 +934,52 @@ def generate_colors_page() -> str:
 &lt;button class="btn bg-primary-200 border-primary-500"&gt;옅은 Primary 버튼&lt;/button&gt;</code></pre>
                 </div>
             </div>
+        </div>
+    """
+    
+    # Color Palettes (원시 색상 팔레트 - 가장 하단으로 이동)
+    content += """
+        <div class="section">
+            <h2 class="section-title">Color Palettes</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">RexBox에서 사용 가능한 모든 원시 색상 팔레트입니다. 일반적으로는 Semantic Colors나 Color Scale을 사용하는 것을 권장합니다.</p>
+    """
+    
+    def get_category_sort_key(item):
+        category, color_list = item
+        if category == 'Global':
+            return (-1, category)
+        order = category_order_map.get(category, 999)
+        return (order, category)
+    
+    sorted_categories = sorted(categories.items(), key=get_category_sort_key)
+    
+    for category, color_list in sorted_categories:
+        if not color_list:
+            continue
+        
+        content += f"""
+            <div class="palette-group">
+                <div class="palette-title">{category}</div>
+                <div class="color-grid">
+        """
+        sorted_color_list = sort_color_by_brightness(color_list)
+        for var_name, color_value in sorted_color_list:
+            border_style = 'border: 1px solid #e2e8f0;' if color_value.upper() in ['#FCFCFC', '#FFFFFF'] else ''
+            content += f"""
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: {color_value}; {border_style}"></div>
+                        <div class="color-info">
+                            <div class="color-name">${var_name}</div>
+                            <div class="color-value">{color_value}</div>
+                        </div>
+                    </div>
+            """
+        content += """
+                </div>
+            </div>
+        """
+    
+    content += """
         </div>
     """
 
