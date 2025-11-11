@@ -13,11 +13,23 @@
 $bp: (
     "xxs": 320px,   // 최소 모바일
     "xs": 360px,    // 소형 모바일
-    "sm": 576px,    // 중형 모바일 (Bootstrap 표준)
-    "md": 768px,    // 대형 모바일/태블릿 (Bootstrap 표준)
-    "lg": 992px,    // 태블릿/소형 데스크톱 (Bootstrap 표준)
-    "xl": 1200px,   // 데스크톱 (Bootstrap 표준)
-    "xxl": 1400px   // 대형 데스크톱 (Bootstrap 표준)
+    "sm": 576px,    // 기준 모바일
+    "md": 768px,    // 대형 모바일/태블릿
+    "lg": 992px,    // 태블릿/소형 데스크톱
+    "xl": 1200px,   // 데스크톱
+    "xxl": 1400px   // 대형 데스크톱
+);
+
+// Semantic Breakpoint Map (직관적인 이름)
+// 기술적 키("sm", "md" 등)와 semantic 키("mobile", "desktop" 등) 모두 지원
+$bp-semantic: (
+    "mobile-xs": "xxs",
+    "mobile-sm": "xs",
+    "mobile": "sm",
+    "mobile-lg": "md",
+    "desktop": "lg",
+    "desktop-lg": "xl",
+    "desktop-xl": "xxl"
 );
 
 // ============================================
@@ -26,37 +38,76 @@ $bp: (
 
 // 위로 (min-width) - Mobile First
 @mixin up($key) {
-    $value: map-get($bp, $key);
+    // Semantic 키를 먼저 확인
+    $semantic-key: map-get($bp-semantic, $key);
+    $final-key: $key;
+    
+    @if $semantic-key {
+        $final-key: $semantic-key;
+    }
+    
+    $value: map-get($bp, $final-key);
+
     @if $value {
         @media (min-width: $value) {
             @content;
         }
-    } @else {
+    }
+
+    @else {
         @warn "Unknown breakpoint: #{$key}";
     }
 }
 
 // 아래로 (max-width) - Desktop First
 @mixin down($key) {
-    $value: map-get($bp, $key);
+    // Semantic 키를 먼저 확인
+    $semantic-key: map-get($bp-semantic, $key);
+    $final-key: $key;
+    
+    @if $semantic-key {
+        $final-key: $semantic-key;
+    }
+    
+    $value: map-get($bp, $final-key);
+
     @if $value {
         @media (max-width: calc($value - 0.02px)) {
             @content;
         }
-    } @else {
+    }
+
+    @else {
         @warn "Unknown breakpoint: #{$key}";
     }
 }
 
 // 범위 (between) - 특정 범위 지정
 @mixin between($min, $max) {
-    $min-value: map-get($bp, $min);
-    $max-value: map-get($bp, $max);
+    // Semantic 키를 먼저 확인
+    $min-semantic: map-get($bp-semantic, $min);
+    $max-semantic: map-get($bp-semantic, $max);
+    $min-final: $min;
+    $max-final: $max;
+    
+    @if $min-semantic {
+        $min-final: $min-semantic;
+    }
+    
+    @if $max-semantic {
+        $max-final: $max-semantic;
+    }
+    
+    $min-value: map-get($bp, $min-final);
+    $max-value: map-get($bp, $max-final);
+
     @if $min-value and $max-value {
         @media (min-width: $min-value) and (max-width: calc($max-value - 0.02px)) {
             @content;
         }
-    } @else {
+    }
+
+    @else {
         @warn "Unknown breakpoint: min=#{$min}, max=#{$max}";
     }
 }
@@ -67,14 +118,13 @@ $bp: (
 // 기존 코드와의 호환성을 위해 유지
 // 권장: 새 코드는 Map 기반 mixin 사용
 
-$mobile-xxs: map-get($bp, "xxs");
-$mobile-xs: map-get($bp, "xs");
-$mobile-sm: map-get($bp, "sm");
-$mobile: map-get($bp, "md");
-$desktop-xs: map-get($bp, "lg");
-$desktop-sm: map-get($bp, "xl");
-$desktop: map-get($bp, "xxl");
-$desktop-lg: map-get($bp, "xxl");
+// $mobile-xxs: map-get($bp, "xxs");
+$mobile-xs: map-get($bp, "xxs");
+$mobile-sm: map-get($bp, "xs");
+$mobile: map-get($bp, "sm"); // 576px (기존 코드 호환성)
+$mobile-lg: map-get($bp, "md");
+$desktop: map-get($bp, "lg");
+$desktop-lg: map-get($bp, "xl");
 $desktop-xl: map-get($bp, "xxl");
 
 // ============================================
@@ -84,50 +134,32 @@ $desktop-xl: map-get($bp, "xxl");
 // 권장: 새 코드는 Map 기반 mixin 사용
 
 // Max-width Mixins (Desktop First)
-@mixin mobile-xxs {
+@mixin mobile-xs {
     @include down("xxs") {
         @content;
     }
 }
 
-@mixin mobile-xs {
+@mixin mobile-sm {
     @include down("xs") {
         @content;
     }
 }
 
-@mixin mobile-sm {
+@mixin mobile {
     @include down("sm") {
         @content;
     }
 }
 
-@mixin mobile {
-    @include down("md") {
-        @content;
-    }
-}
-
-@mixin desktop-xs {
+@mixin desktop {
     @include down("lg") {
         @content;
     }
 }
 
-@mixin desktop-sm {
-    @include down("xl") {
-        @content;
-    }
-}
-
-@mixin desktop {
-    @include down("xxl") {
-        @content;
-    }
-}
-
 @mixin desktop-lg {
-    @include down("xxl") {
+    @include down("xl") {
         @content;
     }
 }
@@ -140,43 +172,31 @@ $desktop-xl: map-get($bp, "xxl");
 
 // Min-width Mixins (Mobile First)
 @mixin from-mobile-xs {
-    @include up("xs") {
+    @include up("xxs") {
         @content;
     }
 }
 
 @mixin from-mobile-sm {
-    @include up("sm") {
+    @include up("xs") {
         @content;
     }
 }
 
 @mixin from-mobile {
-    @include up("md") {
-        @content;
-    }
-}
-
-@mixin from-desktop-xs {
-    @include up("lg") {
-        @content;
-    }
-}
-
-@mixin from-desktop-sm {
-    @include up("xl") {
+    @include up("sm") {
         @content;
     }
 }
 
 @mixin from-desktop {
-    @include up("xxl") {
+    @include up("lg") {
         @content;
     }
 }
 
 @mixin from-desktop-lg {
-    @include up("xxl") {
+    @include up("xl") {
         @content;
     }
 }
