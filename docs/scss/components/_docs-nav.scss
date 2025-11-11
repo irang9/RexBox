@@ -66,11 +66,11 @@
 }
 
 .docs-nav {
-    padding: 16px 0;
+    padding: 12px 0;
 }
 
 .docs-nav-category {
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     
     &:last-child {
         margin-bottom: 0;
@@ -78,13 +78,13 @@
 }
 
 .docs-nav-category-title {
-    padding: 8px 20px;
-    font-size: 12px;
-    font-weight: 700;
-    color: #64748b;
+    padding: 6px 20px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #cbd5e1;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+    margin-bottom: 2px;
 }
 
 .docs-nav-list {
@@ -95,7 +95,7 @@
 
 .docs-nav-link {
     display: block;
-    padding: 10px 20px;
+    padding: 8px 20px;
     color: #64748b;
     text-decoration: none;
     font-size: 14px;
