@@ -105,7 +105,6 @@ docs/
 ├── scripts/                     # 스크립트 파일들
 │   ├── generate-docs.py         # 문서 생성 스크립트 (메인)
 │   ├── watch-theme-colors.py    # SCSS 파일 감시 스크립트
-│   ├── create-favicon.py        # Favicon 생성 스크립트
 │   ├── start-watcher.sh         # 감시 시작 스크립트
 │   ├── install-service.sh       # macOS 서비스 설치
 │   ├── uninstall-service.sh     # macOS 서비스 제거
