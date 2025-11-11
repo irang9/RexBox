@@ -420,7 +420,8 @@ def extract_theme_mappings(theme_file: Path, color_vars: Dict[str, str]) -> Dict
     with open(theme_file, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    pattern = r'\$([a-z0-9-]+):\s*\$([a-z0-9-]+)\s*;'
+    # !default가 있는 경우와 없는 경우 모두 처리
+    pattern = r'\$([a-z0-9-]+):\s*\$([a-z0-9-]+)\s*(?:!default)?\s*;'
     matches = re.finditer(pattern, content)
     
     for match in matches:
@@ -574,6 +575,35 @@ def generate_colors_page() -> str:
                         </div>
                     </div>
             """
+        
+        # Primary, Secondary, Point, Slate 추가
+        step_value_colors = []
+        
+        # Brand Colors에서 primary, secondary, point 가져오기
+        for name, color, base_var in brand_colors:
+            if name in ['primary', 'secondary', 'point']:
+                step_value_colors.append((name, color))
+        
+        # Slate는 원시 색상에서 가져오기
+        if 'slate-500' in color_vars:
+            step_value_colors.append(('slate', color_vars['slate-500']))
+        
+        for color_name, color_value in step_value_colors:
+            if color_value:
+                text_color = "#1e293b" if color_value.upper() not in ['#000000', '#000'] else "#ffffff"
+                border_style = 'border: 1px solid #e2e8f0;' if color_value.upper() in ['#FCFCFC', '#FFFFFF'] else ''
+                steps_info = "50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950" if color_name == 'slate' else "100, 200, 300, 400, 500, 600, 700, 800, 900"
+                content += f"""
+                    <div class="semantic-item bg-example" style="background: {color_value}; {border_style}">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$bg-{color_name}</div>
+                            <div class="semantic-value">{color_value}</div>
+                            <div class="example-text" style="margin-top: 8px; color: {text_color};">background-color: $bg-{color_name};</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: {steps_info}</div>
+                        </div>
+                    </div>
+                """
+        
         content += """
                 </div>
             </div>
@@ -598,6 +628,35 @@ def generate_colors_page() -> str:
                         </div>
                     </div>
             """
+        
+        # Primary, Secondary, Point, Slate 추가
+        step_value_colors = []
+        
+        # Brand Colors에서 primary, secondary, point 가져오기
+        for name, color, base_var in brand_colors:
+            if name in ['primary', 'secondary', 'point']:
+                step_value_colors.append((name, color))
+        
+        # Slate는 원시 색상에서 가져오기
+        if 'slate-500' in color_vars:
+            step_value_colors.append(('slate', color_vars['slate-500']))
+        
+        for color_name, color_value in step_value_colors:
+            if color_value:
+                bg_color = "#ffffff"
+                border_style = 'border: 1px solid #e2e8f0;'
+                steps_info = "50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950" if color_name == 'slate' else "100, 200, 300, 400, 500, 600, 700, 800, 900"
+                content += f"""
+                    <div class="semantic-item text-example" style="background: {bg_color}; {border_style}">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$text-{color_name}</div>
+                            <div class="semantic-value">{color_value}</div>
+                            <div class="example-text" style="margin-top: 8px; color: {color_value};">color: $text-{color_name};</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: {steps_info}</div>
+                        </div>
+                    </div>
+                """
+        
         content += """
                 </div>
             </div>
@@ -620,6 +679,33 @@ def generate_colors_page() -> str:
                         </div>
                     </div>
             """
+        
+        # Primary, Secondary, Point, Slate 추가
+        step_value_colors = []
+        
+        # Brand Colors에서 primary, secondary, point 가져오기
+        for name, color, base_var in brand_colors:
+            if name in ['primary', 'secondary', 'point']:
+                step_value_colors.append((name, color))
+        
+        # Slate는 원시 색상에서 가져오기
+        if 'slate-500' in color_vars:
+            step_value_colors.append(('slate', color_vars['slate-500']))
+        
+        for color_name, color_value in step_value_colors:
+            if color_value:
+                steps_info = "50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950" if color_name == 'slate' else "100, 200, 300, 400, 500, 600, 700, 800, 900"
+                content += f"""
+                    <div class="semantic-item border-example" style="background: #ffffff; border: 2px solid {color_value};">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$border-{color_name}</div>
+                            <div class="semantic-value">{color_value}</div>
+                            <div class="example-text" style="margin-top: 8px; color: #1e293b;">border: 1px solid $border-{color_name};</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: {steps_info}</div>
+                        </div>
+                    </div>
+                """
+        
         content += """
                 </div>
             </div>
@@ -710,140 +796,6 @@ def generate_colors_page() -> str:
                     </div>
             """
         content += """
-                </div>
-            </div>
-        """
-    
-    content += """
-        </div>
-    """
-    
-    # Step Value Preset (스텝별 색상값 프리셋)
-    content += """
-        <div class="section">
-            <h2 class="section-title">Step Value Preset</h2>
-            <p style="margin-bottom: 16px; color: #64748b;">다음 색상들은 스텝별(스케일) 색상값으로 유틸리티 클래스에서 직접 사용할 수 있습니다. <code class="code">.bg-slate-200</code>, <code class="code">.text-primary-600</code> 등의 형태로 사용합니다.</p>
-    """
-    
-    # Slate Color Scale - 항상 표시
-    slate_steps = ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "950"]
-    slate_colors = []
-    for step in slate_steps:
-        var_name = f"slate-{step}"
-        if var_name in color_vars:
-            slate_colors.append((var_name, color_vars[var_name]))
-    
-    content += """
-            <div class="palette-group">
-                <div class="palette-title">Slate</div>
-                <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">사용 가능한 단계: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950</p>
-                <div class="color-grid">
-        """
-    for var_name, color_value in slate_colors:
-        border_style = 'border: 1px solid #e2e8f0;' if color_value.upper() in ['#F8FAFC', '#FFFFFF'] else ''
-        content += f"""
-                    <div class="color-item">
-                        <div class="color-swatch" style="background: {color_value}; {border_style}"></div>
-                        <div class="color-info">
-                            <div class="color-name">${var_name}</div>
-                            <div class="color-value">{color_value}</div>
-                        </div>
-                    </div>
-        """
-    content += """
-                </div>
-            </div>
-        """
-    
-    # Primary Color Scale - 항상 표시
-    primary_steps = ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
-    primary_colors = []
-    for step in primary_steps:
-        var_name = f"primary-{step}"
-        if var_name in theme_mappings:
-            _, color = theme_mappings[var_name]
-            primary_colors.append((var_name, color))
-    
-    content += """
-            <div class="palette-group">
-                <div class="palette-title">Primary</div>
-                <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">사용 가능한 단계: 100, 200, 300, 400, 500, 600, 700, 800, 900</p>
-                <div class="color-grid">
-        """
-    for var_name, color_value in primary_colors:
-        border_style = 'border: 1px solid #e2e8f0;' if color_value.upper() in ['#FCFCFC', '#FFFFFF'] else ''
-        content += f"""
-                    <div class="color-item">
-                        <div class="color-swatch" style="background: {color_value}; {border_style}"></div>
-                        <div class="color-info">
-                            <div class="color-name">${var_name}</div>
-                            <div class="color-value">{color_value}</div>
-                        </div>
-                    </div>
-        """
-    content += """
-                </div>
-            </div>
-        """
-    
-    # Secondary Color Scale - 항상 표시
-    secondary_steps = ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
-    secondary_colors = []
-    for step in secondary_steps:
-        var_name = f"secondary-{step}"
-        if var_name in theme_mappings:
-            _, color = theme_mappings[var_name]
-            secondary_colors.append((var_name, color))
-    
-    content += """
-            <div class="palette-group">
-                <div class="palette-title">Secondary</div>
-                <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">사용 가능한 단계: 100, 200, 300, 400, 500, 600, 700, 800, 900</p>
-                <div class="color-grid">
-        """
-    for var_name, color_value in secondary_colors:
-        border_style = 'border: 1px solid #e2e8f0;' if color_value.upper() in ['#FCFCFC', '#FFFFFF'] else ''
-        content += f"""
-                    <div class="color-item">
-                        <div class="color-swatch" style="background: {color_value}; {border_style}"></div>
-                        <div class="color-info">
-                            <div class="color-name">${var_name}</div>
-                            <div class="color-value">{color_value}</div>
-                        </div>
-                    </div>
-        """
-    content += """
-                </div>
-            </div>
-        """
-    
-    # Point Color Scale - 항상 표시
-    point_steps = ["100", "200", "300", "400", "500", "600", "700", "800", "900"]
-    point_colors = []
-    for step in point_steps:
-        var_name = f"point-{step}"
-        if var_name in theme_mappings:
-            _, color = theme_mappings[var_name]
-            point_colors.append((var_name, color))
-    
-    content += """
-            <div class="palette-group">
-                <div class="palette-title">Point</div>
-                <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">사용 가능한 단계: 100, 200, 300, 400, 500, 600, 700, 800, 900</p>
-                <div class="color-grid">
-        """
-    for var_name, color_value in point_colors:
-        border_style = 'border: 1px solid #e2e8f0;' if color_value.upper() in ['#FCFCFC', '#FFFFFF'] else ''
-        content += f"""
-                    <div class="color-item">
-                        <div class="color-swatch" style="background: {color_value}; {border_style}"></div>
-                        <div class="color-info">
-                            <div class="color-name">${var_name}</div>
-                            <div class="color-value">{color_value}</div>
-                        </div>
-                    </div>
-        """
-    content += """
                 </div>
             </div>
         """
