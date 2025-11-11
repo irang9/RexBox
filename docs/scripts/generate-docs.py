@@ -206,6 +206,8 @@ def generate_colors_page() -> str:
     stock_colors = []
     link_colors = []
     
+    neutral_colors = []  # slate를 위한 별도 리스트
+    
     for semantic_name, (base_var, color_value) in theme_mappings.items():
         item = (semantic_name, color_value, base_var)
         
@@ -217,6 +219,8 @@ def generate_colors_page() -> str:
             border_colors.append(item)
         elif semantic_name in ['primary', 'secondary', 'point']:
             brand_colors.append(item)
+        elif semantic_name == 'slate':
+            neutral_colors.append(item)
         elif semantic_name in ['success', 'warning', 'danger', 'info']:
             state_colors.append(item)
         elif semantic_name in ['positive', 'negative', 'neutral', 'stock-up', 'stock-down', 'stock-neutral', 'stock-positive', 'stock-negative', 'value-red', 'value-blue', 'gapup', 'gapdown']:
@@ -229,10 +233,94 @@ def generate_colors_page() -> str:
         <h1>Theme</h1>
         <p class="subtitle">RexBox의 semantic 색상 테마 (프로젝트별 오버라이드 가능)</p>
         
+        <!-- 핵심 개념 설명 -->
+        <div class="section">
+            <h2 class="section-title">Theme 색상 시스템</h2>
+            <p style="margin-bottom: 16px; color: #64748b;">RexBox의 색상 시스템은 Semantic Color와 Step Value를 통합적으로 제공합니다.</p>
+            
+            <div style="padding: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 24px;">
+                <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">핵심 개념</h3>
+                <div style="display: grid; gap: 16px; font-size: 14px; color: #1e293b;">
+                    <div>
+                        <strong style="color: #1e40af;">1. Semantic Color (의미 기반 색상):</strong>
+                        <p style="margin: 8px 0 0 0; color: #64748b;">의미 있는 색상 이름을 사용합니다. 예: <code class="code" style="background: #e0e7ff; padding: 2px 6px; border-radius: 4px;">$primary</code>, <code class="code" style="background: #e0e7ff; padding: 2px 6px; border-radius: 4px;">$slate</code></p>
+                    </div>
+                    <div>
+                        <strong style="color: #1e40af;">2. Step Value (스텝별 색상값):</strong>
+                        <p style="margin: 8px 0 0 0; color: #64748b;">같은 색상의 세분화된 단계입니다. 예: <code class="code" style="background: #e0e7ff; padding: 2px 6px; border-radius: 4px;">$primary-600</code>, <code class="code" style="background: #e0e7ff; padding: 2px 6px; border-radius: 4px;">$slate-500</code></p>
+                    </div>
+                    <div style="padding: 12px; background: #eff6ff; border-radius: 6px; border: 1px solid #bfdbfe; margin-top: 8px;">
+                        <strong style="color: #1e40af;">💡 중요:</strong>
+                        <p style="margin: 8px 0 0 0; color: #1e40af; font-size: 13px;">
+                            Semantic Color와 Step Value는 <strong>같은 시스템의 다른 표현</strong>입니다.<br>
+                            예: <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">$primary</code>는 <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">$primary-600</code>의 별칭이며, 
+                            <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-primary</code>와 <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-primary-600</code>는 같은 색상을 사용합니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!-- Semantic Colors (Theme) -->
         <div class="section">
             <h2 class="section-title">Semantic Colors (Theme)</h2>
     """
+    
+    # Brand Colors (최상단으로 이동)
+    if brand_colors:
+        content += """
+            <div class="category-group">
+                <div class="category-title">Brand Colors</div>
+                <p style="margin-bottom: 16px; color: #64748b; font-size: 14px;">프로젝트의 브랜드 색상입니다. 각 색상은 Semantic Name과 Step Values를 모두 제공합니다.</p>
+                <div class="semantic-colors">
+        """
+        brand_colors_sorted = sorted(brand_colors, key=lambda x: (0 if x[0] == 'primary' else 1 if x[0] == 'secondary' else 2, x[0]))
+        for name, color, base_var in brand_colors_sorted:
+            text_color = "#1e293b" if color.upper() not in ['#000000', '#000'] else "#ffffff"
+            border_style = 'border: 1px solid #e2e8f0;' if color.upper() in ['#FCFCFC', '#FFFFFF'] else ''
+            steps_info = "100, 200, 300, 400, 500, 600, 700, 800, 900"
+            content += f"""
+                    <div class="semantic-item bg-example" style="background: {color}; {border_style}">
+                        <div class="semantic-info">
+                            <div class="semantic-name">${name}</div>
+                            <div class="semantic-value">{color}</div>
+                            <div class="example-text" style="margin-top: 8px; color: {text_color};">Semantic Name: ${name}</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: {steps_info}</div>
+                            <div style="margin-top: 4px; font-size: 11px; color: #94a3b8;">예: ${name}-500 (기본값), ${name}-200 (밝은 색), ${name}-800 (어두운 색)</div>
+                        </div>
+                    </div>
+            """
+        content += """
+                </div>
+            </div>
+        """
+    
+    # Neutral Color System (Gray System)
+    if neutral_colors or 'slate-500' in color_vars:
+        content += """
+            <div class="category-group">
+                <div class="category-title">Neutral Color System</div>
+                <p style="margin-bottom: 16px; color: #64748b; font-size: 14px;">무채색(neutral) 용도로 사용되는 기본 색상 시스템입니다. Slate를 기본 무채색으로 사용하며, Semantic Name과 Step Values를 모두 제공합니다.</p>
+                <div class="semantic-colors">
+        """
+        slate_color = color_vars.get('slate-500', '#64748b')
+        text_color = "#1e293b"
+        steps_info = "50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950"
+        content += f"""
+                    <div class="semantic-item bg-example" style="background: {slate_color}; border: 1px solid #e2e8f0;">
+                        <div class="semantic-info">
+                            <div class="semantic-name">$slate</div>
+                            <div class="semantic-value">{slate_color}</div>
+                            <div class="example-text" style="margin-top: 8px; color: {text_color};">Semantic Name: $slate (기본값: $slate-500)</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: #64748b;">Step Values: {steps_info}</div>
+                            <div style="margin-top: 4px; font-size: 11px; color: #94a3b8;">예: $slate-500 (기본값), $slate-200 (밝은 색), $slate-800 (어두운 색)</div>
+                        </div>
+                    </div>
+        """
+        content += """
+                </div>
+            </div>
+        """
     
     # Background Colors
     if bg_colors:
@@ -389,29 +477,6 @@ def generate_colors_page() -> str:
             </div>
         """
     
-    # Brand Colors
-    if brand_colors:
-        content += """
-            <div class="category-group">
-                <div class="category-title">Brand Colors</div>
-                <div class="semantic-colors">
-        """
-        brand_colors_sorted = sorted(brand_colors, key=lambda x: (0 if x[0] == 'primary' else 1, x[0]))
-        for name, color, base_var in brand_colors_sorted:
-            content += f"""
-                    <div class="semantic-item">
-                        <div class="semantic-swatch" style="background: {color};"></div>
-                        <div class="semantic-info">
-                            <div class="semantic-name">${name}</div>
-                            <div class="semantic-value">{color}</div>
-                        </div>
-                    </div>
-            """
-        content += """
-                </div>
-            </div>
-        """
-    
     # State Colors
     if state_colors:
         content += """
@@ -518,7 +583,7 @@ def generate_colors_page() -> str:
         
         <div class="section">
             <h2 class="section-title">색상 유틸리티 사용 방법</h2>
-            <p style="margin-bottom: 16px; color: #64748b;">RexBox는 두 가지 방식으로 색상 유틸리티를 사용할 수 있습니다:</p>
+            <p style="margin-bottom: 16px; color: #64748b;">RexBox는 Semantic Color와 Step Value를 통합적으로 제공합니다. 두 방식은 같은 시스템의 다른 표현입니다.</p>
             
             <div style="margin-bottom: 24px; padding: 20px; background: #eff6ff; border-radius: 8px; border: 1px solid #bfdbfe;">
                 <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e40af;">📌 언제 무엇을 사용해야 할까요?</h3>
@@ -529,7 +594,7 @@ def generate_colors_page() -> str:
                             <li>일반적인 UI 컴포넌트 (버튼, 카드, 배너 등)</li>
                             <li>프로젝트 전체에서 일관된 색상이 필요한 경우</li>
                             <li>테마 변경 시 쉽게 유지보수하고 싶은 경우</li>
-                            <li>예: <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-primary</code>, <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-primary-subtle</code></li>
+                            <li>예: <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-primary</code>, <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-slate</code></li>
                         </ul>
                     </div>
                     <div>
@@ -540,12 +605,13 @@ def generate_colors_page() -> str:
                             <li>그라데이션이나 복잡한 색상 조합이 필요한 경우</li>
                             <li>예: <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-primary-200</code>, <code class="code" style="background: #dbeafe; padding: 2px 6px; border-radius: 4px;">.bg-slate-300</code></li>
                         </ul>
-                </div>
+                    </div>
                     <div style="margin-top: 8px; padding: 12px; background: #fff; border-radius: 6px; border: 1px solid #bfdbfe;">
-                        <strong style="color: #dc2626;">⚠️ 주의:</strong>
-                        <p style="margin: 8px 0 0 0; color: #991b1b; font-size: 13px;">
-                            <code class="code">.bg-primary</code>와 <code class="code">.bg-primary-500</code>는 같은 색상을 사용할 수 있습니다. 
-                            일반적으로는 <code class="code">.bg-primary</code>를 사용하고, 세밀한 조정이 필요할 때만 Step Values를 사용하세요.
+                        <strong style="color: #1e40af;">💡 핵심 개념:</strong>
+                        <p style="margin: 8px 0 0 0; color: #1e40af; font-size: 13px;">
+                            <code class="code">.bg-primary</code>는 <code class="code">.bg-primary-600</code>의 별칭입니다 (기본값). 
+                            <code class="code">.bg-slate</code>는 <code class="code">.bg-slate-500</code>의 별칭입니다 (기본값).<br>
+                            일반적으로는 Semantic Names를 사용하고, 세밀한 조정이 필요할 때만 Step Values를 사용하세요.
                         </p>
                     </div>
                 </div>
@@ -554,24 +620,27 @@ def generate_colors_page() -> str:
             <div style="display: grid; gap: 24px;">
                 <div style="padding: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
                     <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">1. Semantic Names (의미 기반 색상)</h3>
-                    <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">의미 있는 색상 이름을 사용합니다. 프로젝트별로 색상 값을 오버라이드할 수 있어 유지보수가 용이합니다.</p>
+                    <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">의미 있는 색상 이름을 사용합니다. 프로젝트별로 색상 값을 오버라이드할 수 있어 유지보수가 용이합니다. 각 Semantic Name은 기본 Step Value의 별칭입니다.</p>
                     <div style="display: grid; gap: 8px; margin-bottom: 12px;">
-                        <code class="code">.bg-primary</code> - Primary 배경색
+                        <code class="code">.bg-primary</code> - Primary 배경색 (기본값: primary-600)
+                        <code class="code">.bg-slate</code> - Slate 배경색 (기본값: slate-500)
                         <code class="code">.text-primary</code> - Primary 텍스트 색상
                         <code class="code">.border-primary</code> - Primary 테두리 색상
                         <code class="code">.bg-primary-light</code> - 옅은 Primary 배경색
                         <code class="code">.bg-primary-subtle</code> - 미묘한 Primary 배경색
                     </div>
                     <pre style="background: #1e293b; color: #f8fafc; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px; line-height: 1.6; margin: 0;"><code>&lt;div class="bg-primary text-white"&gt;Primary 배경&lt;/div&gt;
+&lt;div class="bg-slate text-white"&gt;Slate 배경&lt;/div&gt;
 &lt;span class="text-primary"&gt;Primary 텍스트&lt;/span&gt;
 &lt;div class="border border-primary"&gt;Primary 테두리&lt;/div&gt;</code></pre>
                 </div>
                 
                 <div style="padding: 20px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
                     <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px; color: #1e293b;">2. Step Values (스텝별 색상값)</h3>
-                    <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">주요 색상(Slate, Primary, Secondary, Point)에 한해 스텝별 색상값을 직접 사용할 수 있습니다. 더 세밀한 색상 조정이 가능합니다.</p>
+                    <p style="margin-bottom: 12px; color: #64748b; font-size: 14px;">Brand Colors와 Neutral Color System에 한해 스텝별 색상값을 직접 사용할 수 있습니다. 더 세밀한 색상 조정이 가능하며, Semantic Name과 같은 시스템의 다른 표현입니다.</p>
                     <div style="display: grid; gap: 8px; margin-bottom: 12px;">
                         <code class="code">.bg-slate-200</code> - Slate 200 배경색
+                        <code class="code">.bg-primary-600</code> - Primary 600 배경색 (.bg-primary와 동일)
                         <code class="code">.text-primary-600</code> - Primary 600 텍스트 색상
                         <code class="code">.border-secondary-300</code> - Secondary 300 테두리 색상
                         <code class="code">.bg-point-100</code> - Point 100 배경색
@@ -579,14 +648,14 @@ def generate_colors_page() -> str:
                     <div style="margin-bottom: 12px; padding: 12px; background: #fff7ed; border-radius: 6px; border: 1px solid #fed7aa;">
                         <p style="margin: 0; color: #92400e; font-size: 13px;"><strong>사용 가능한 색상:</strong></p>
                         <ul style="margin: 8px 0 0 0; padding-left: 20px; color: #92400e; font-size: 13px;">
-                            <li><strong>Slate:</strong> 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950</li>
+                            <li><strong>Slate (Neutral):</strong> 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950</li>
                             <li><strong>Primary:</strong> 100, 200, 300, 400, 500, 600, 700, 800, 900</li>
                             <li><strong>Secondary:</strong> 100, 200, 300, 400, 500, 600, 700, 800, 900</li>
                             <li><strong>Point:</strong> 100, 200, 300, 400, 500, 600, 700, 800, 900</li>
                         </ul>
                     </div>
                     <pre style="background: #1e293b; color: #f8fafc; padding: 12px; border-radius: 4px; overflow-x: auto; font-size: 12px; line-height: 1.6; margin: 0;"><code>&lt;div class="bg-slate-100 text-slate-800"&gt;Slate 색상&lt;/div&gt;
-&lt;span class="text-primary-600"&gt;Primary 600 텍스트&lt;/span&gt;
+&lt;span class="text-primary-600"&gt;Primary 600 텍스트 (.text-primary와 동일)&lt;/span&gt;
 &lt;div class="border border-secondary-300"&gt;Secondary 300 테두리&lt;/div&gt;
 &lt;button class="btn bg-primary-200 border-primary-500"&gt;옅은 Primary 버튼&lt;/button&gt;</code></pre>
                 </div>
